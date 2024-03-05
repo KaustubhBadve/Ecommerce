@@ -1,0 +1,33 @@
+.modal_for_Login{
+    display: flex;
+    height: 65vh;
+    width: 43vw;
+}
+.modal_for_Login_div1{
+    width: 35%;
+    background-color: rgb(115, 176, 241);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.modal_for_Login_div2{
+    width: 65%;
+    background-color: rgb(212, 220, 228);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal_for_Login_div2>p{
+    color: blue;
+    cursor: pointer;
+}
+.modal_for_Login_div1>img{
+    width: 90%;
+}
+
+.ant-modal .ant-modal-content {
+    padding: 0px 0px;
+}

@@ -1,0 +1,56 @@
+.offerSection-frontPage {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 15px;
+  }
+  
+  .offerSection-frontPage>div{
+    padding: 10px;
+  }
+  .offerSection-frontPage img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  .ant-form-item-control-input{
+  width: 100% !important;
+  }
+  .add_product{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 90vh;
+  }
+  .add_product_Slider{
+    width: 60vw;
+    height: 90vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .add_product_form {
+    width: 40vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    overflow: scroll;
+  }
+
+  .add_product_form::-webkit-scrollbar { display: none; }
+  
+  .ant-form-item-label {
+    text-align: left !important;
+  }
+  
+  .ant-form-item-control-input {
+    align-self: flex-start !important;
+  }
+  .slider_frontPage{
+    width: 100%;
+    height : 400px;
+  }
+  .slider_productUpload{
+    width: 100%;
+    height : 90vh;
+  }
