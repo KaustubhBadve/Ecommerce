@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Upload, Button, message, Select, Image } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { productUpload1, productUpload2 } from "./imports";
+import { images } from "./imports";
 import { Slider } from "./Slider";
 
 const ProductForm = () => {
@@ -179,7 +179,7 @@ const ProductForm = () => {
         </Form.Item>
       </Form>
       <div className="add_product_Slider">
-      <Slider images={[productUpload1, productUpload2]} clasName={"productUpload"} />
+      <Slider images={[images.productUpload1, images.productUpload2]} clasName={"productUpload"} />
       </div>
     </div>
   );

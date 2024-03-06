@@ -17,8 +17,8 @@ export const FrontPageProductList = ({ data }) => {
               <hr />
               <span className="brand-name">{brand.toUpperCase()}</span>
               <Swiper
-                slidesPerView={category == "tvs" ? 4 : 5}
-                spaceBetween={category == "tvs" ? 10 : 45}
+                slidesPerView={category == "tv's" ? 4 : 5}
+                spaceBetween={category == "tv's" ? 10 : 45}
                 loop={true}
                 autoplay={{
                   delay: 3000,
@@ -30,7 +30,7 @@ export const FrontPageProductList = ({ data }) => {
                   <SwiperSlide key={index}>
                     <div
                       className={`product-slider-main-div-${
-                        category == "tvs" ? "tvs" : "mobile"
+                        category == "tv's" ? "tvs" : "mobile"
                       }`}
                       onClick={() => navigate(`/product/${product?.id}`)}
                     >

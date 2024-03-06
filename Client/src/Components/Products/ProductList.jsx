@@ -1,5 +1,5 @@
 import "./Product.css";
-import { fAsssured } from "../imports";
+import { images } from "../imports";
 import { StarOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,7 @@ export const ProductList = ({ productList }) => {
             </div>
             <div>
               <h2 className="product-title">
-                {product?.title?.slice(0, 100)}...
+                {product?.title?.slice(0, 70)}{product?.title.length>70 ? "...":""}
               </h2>
               <div
                 style={{
@@ -66,14 +66,14 @@ export const ProductList = ({ productList }) => {
                   "en-IN"
                 )} Reviews`}
               </div>
-              {product?.highlight.map((highlight) => {
+              {product?.highlight.slice(0,4).map((highlight) => {
                 return <li>{highlight}</li>;
               })}
             </div>
             <div>
               <div>
                 <span>₹ {discountedPrice?.toLocaleString("en-IN")}</span>
-                <img src={fAsssured} alt="" />
+                <img src={images?.fAsssured} alt="" />
               </div>
               <div>
                 <span
@@ -91,8 +91,13 @@ export const ProductList = ({ productList }) => {
               </div>
               <div>
                 Upto{" "}
-                <b>₹ {(discountedPrice - Math.floor(discountedPrice*0.2))?.toLocaleString("en-IN")}</b> off
-                on Exchange
+                <b>
+                  ₹{" "}
+                  {(
+                    discountedPrice - Math.floor(discountedPrice * 0.2)
+                  )?.toLocaleString("en-IN")}
+                </b>{" "}
+                off on Exchange
               </div>
               <div style={{ color: "green" }}>
                 <b>Bank Offer</b>

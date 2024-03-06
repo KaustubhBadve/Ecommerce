@@ -7,23 +7,20 @@
   align-items: center;
 }
 .front-top-navbar div:nth-child(1) {
-  width: 90px !important;
+  width: 110px !important;
+  height: 100%;
+  cursor: pointer;
 }
 .navbar-top-searchBar {
   width: 40% !important;
-}
-.navbar-top-icon .anticon {
-  font-size: 25px;
-  cursor: pointer !important;
 }
 p {
   margin: 0;
 }
 .navbar-top-location {
-  font-size: 12px;
-  padding: 20px 10px;
-  max-width: 10%;
-  border-radius: 40%;
+  font-size: 13px;
+  padding: 10px 10px;
+  max-width: 20%;
 }
 .modal_for_upateLocation {
   text-align: center !important;

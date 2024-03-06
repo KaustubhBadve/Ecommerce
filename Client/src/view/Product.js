@@ -18,14 +18,9 @@ export const Product = () => {
   }, [dispatch, id]);
 
   return (
-    <div>
-      <FrontPageNavbar />
-      <NavbarCategories />
       <div className="productPage">
-        <ProductImages images={product?.productImages} />
+        <ProductImages images={product?.productImages} category={product?.category} />
         <ProductDetails product={product} />
       </div>
-      <FooterFrontPage />
-    </div>
   );
 };

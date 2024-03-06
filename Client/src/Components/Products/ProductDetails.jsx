@@ -6,7 +6,7 @@ import { offers } from "../../Lib/staticData";
 import "./Product.css";
 const { Search } = Input;
 
-export const ProductDetails = ({ product, offerSection }) => {
+export const ProductDetails = ({ product }) => {
   const [showMoreOffers, setShowMoreOffers] = useState(false);
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
@@ -89,7 +89,7 @@ export const ProductDetails = ({ product, offerSection }) => {
           marginTop: "0px",
         }}
       >
-        <h1>₹ {discountedPrice?.discountedPrice?.toLocaleString("en-IN")}</h1>
+        <h1>₹ {discountedPrice?.toLocaleString("en-IN")}</h1>
         <span
           style={{
             color: "grey",
@@ -198,7 +198,7 @@ export const ProductDetails = ({ product, offerSection }) => {
           />
           {city && (
             <p style={{ color: "green" }}>
-              Order gets Delivered to <b>{city}</b>
+              Order gets Delivered to <b>{city} at {formattedDate}</b>
             </p>
           )}
           {pincodeError && (

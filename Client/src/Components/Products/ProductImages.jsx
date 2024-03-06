@@ -2,9 +2,9 @@ import { FireOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Button, Image } from "antd";
 import React, { useState } from "react";
 
-export const ProductImages = ({ images }) => {
+export const ProductImages = ({ images, category }) => {
   const [selectedImage, setSelectedImage] = useState(
-    images?.length ? images[0] : ""
+    images?.length>0 ? images[2] : ''
   );
 
   const handleImageClick = (image) => {
@@ -24,7 +24,7 @@ export const ProductImages = ({ images }) => {
             />
           ))}
         </div>
-        <div>
+        <div className={category=="tv's" ? "Imagetvs" : "Imagemobile"}>
           <Image src={selectedImage} alt="Selected Image" />
         </div>
       </div>

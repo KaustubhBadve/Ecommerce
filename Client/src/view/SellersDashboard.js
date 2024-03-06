@@ -4,12 +4,11 @@ import { FooterFrontPage } from "../Components/Footer/FooterFrontPage";
 
 export const SellersDashboard = () => {
   return (
-    <div className="view-main">
+    <div>
       <ProductSellNavbar />
       <div style={{ margin: "5px 5px" }}>
         <ProductForm />
       </div>
-      <FooterFrontPage/>
     </div>
   );
 };

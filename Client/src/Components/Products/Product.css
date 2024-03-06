@@ -14,7 +14,8 @@
 }
 .product-list-Individual-main-div {
   display: flex;
-  height: 350px;
+  min-height: 270px;
+  max-height: 300px;
   gap: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: rgb(248, 249, 250);
@@ -106,7 +107,7 @@
 /* Product Image section */
 
 .product-individual-images-main {
-  width: 40%;
+  width: 100%;
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
     rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   height: 100vh;
@@ -152,9 +153,9 @@
   height: 500px;
   width: 100%;
   border-radius: 10px;
-  border: 1px solid rgb(205, 205, 200);
   padding: 30px;
 }
+
 .product-individual-images-main > div:nth-child(2) {
   display: flex;
   justify-content: space-evenly;

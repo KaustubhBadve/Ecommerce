@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Input } from "antd";
+import {  Input } from "antd";
 import {
   HeartOutlined,
   UserOutlined,
@@ -15,11 +15,13 @@ import {
 } from "../../Lib/Functions/getLocationData";
 import ModalPinCode from "./ModalForPinCode";
 import LoginModal from "../Login/LoginModal";
-import {locationn} from "../imports"
+import {images} from "../imports"
+import { useNavigate } from "react-router-dom";
 
 const { Search } = Input;
 
 export const FrontPageNavbar = () => {
+  const navigate=useNavigate()
   const [location, setLocation] = useState(null);
   const [pincode, setPincode] = useState(null);
   const [region, setRegion] = useState(null);
@@ -53,12 +55,11 @@ export const FrontPageNavbar = () => {
   return (
     <div className="front-top-navbar">
       <div>
-        <Image src={Logo} />
+        <img onClick={()=>navigate("/")} src={Logo} style={{width:"100%", height:"100%", borderRadius:"10px"}}/>
       </div>
       {location && (
         <div className="navbar-top-location">
-          <img src={locationn}/>
-          {/* <TruckOutlined style={{ fontSize: "20px" }} /> */}
+          <img src={images?.locationn}/>
           <p>
             {city}, {region}, {pincode}{" "}
             <EditOutlined
