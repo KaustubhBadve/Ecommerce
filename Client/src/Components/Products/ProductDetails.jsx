@@ -102,6 +102,28 @@ export const ProductDetails = ({ product }) => {
         <h3 style={{ color: "green" }}>{product?.offer}% Off</h3>
       </div>
       <div>
+        <ul>Delivery</ul>
+        <div>
+          <Search
+            placeholder="Enter Pincode"
+            enterButton
+            size="medium"
+            loading={loading}
+            minLength={6}
+            maxLength={6}
+            onSearch={handlePincode}
+          />
+          {city && (
+            <p style={{ color: "green" }}>
+              Order gets Delivered to <b>{city} at {formattedDate}</b>
+            </p>
+          )}
+          {pincodeError && (
+            <p style={{ color: "red" }}>Please enter valid pincode</p>
+          )}
+        </div>
+      </div>
+      <div>
         <ul>Available offers</ul>
         <div>
           {offers?.slice(0, 3).map((offer, index) => {
@@ -181,29 +203,6 @@ export const ProductDetails = ({ product }) => {
           </li>
           <li>Cash on Delivery</li>
           <li>Net banking & Credit/ Debit/ ATM card</li>
-        </div>
-      </div>
-
-      <div>
-        <ul>Delivery</ul>
-        <div>
-          <Search
-            placeholder="Enter Pincode"
-            enterButton
-            size="medium"
-            loading={loading}
-            minLength={6}
-            maxLength={6}
-            onSearch={handlePincode}
-          />
-          {city && (
-            <p style={{ color: "green" }}>
-              Order gets Delivered to <b>{city} at {formattedDate}</b>
-            </p>
-          )}
-          {pincodeError && (
-            <p style={{ color: "red" }}>Please enter valid pincode</p>
-          )}
         </div>
       </div>
     </div>
