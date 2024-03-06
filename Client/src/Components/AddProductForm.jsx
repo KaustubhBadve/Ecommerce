@@ -179,7 +179,7 @@ const ProductForm = () => {
         </Form.Item>
       </Form>
       <div className="add_product_Slider">
-      <Slider images={[productUpload1, productUpload2]} classname={"productUpload"} />
+      <Slider images={[productUpload1, productUpload2]} clasName={"productUpload"} />
       </div>
     </div>
   );

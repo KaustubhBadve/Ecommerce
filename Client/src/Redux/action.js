@@ -1,5 +1,6 @@
 import {
   FETCH_CATEGORIES,
+  FETCH_DATA_CATEGORY_WISE,
   FETCH_PRODUCTS,
   FETCH_SPECIFIC_PRODUCTS,
   SAVE_STATIC_OFFERS,
@@ -17,9 +18,9 @@ export const getCategoris = () => (dispatch) => {
   }
 };
 
-export const getProductList = () => (dispatch) => {
+export const getProductList = (category) => (dispatch) => {
   try {
-    fetch(`http://localhost:3033/api/getProduct`)
+    fetch(`http://localhost:3033/api/getProduct?category=${category}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data });
@@ -41,9 +42,16 @@ export const getProduct = (id) => (dispatch) => {
   }
 };
 
-export const saveStaticOffer = (offers) => (dispatch) => {
+export const getDataGroupWise = () => (dispatch) => {
   try {
-    dispatch({ type: SAVE_STATIC_OFFERS, payload: offers });
+
+    fetch(`http://localhost:3033/api/getallproducts`)
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({ type: FETCH_DATA_CATEGORY_WISE, payload: data.data.result });
+    });
+
+    
   } catch (error) {
     console.log(error);
   }

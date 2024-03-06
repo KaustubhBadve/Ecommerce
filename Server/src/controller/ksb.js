@@ -1,3 +1,4 @@
+require("dotenv").config();
 const constants = require("../constants/constants");
 const categoryQuery = require("../lib/queries/categorymaster");
 const productQuery = require("../lib/queries/product");
@@ -10,8 +11,8 @@ const db = require("../models");
 const s3Client = new S3Client({
   region: "ap-south-1",
   credentials: {
-    accessKeyId: "AKIAYS2NRLUPP6GF2E4D",
-    secretAccessKey: "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",
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
   },
 });
 
@@ -34,7 +35,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(
       null,
-      "/Users/kaustubhbadve/Desktop/E-commerse/ecommerse/Backend/src/controller/upload"
+      "/Users/kaustubhbadve/Desktop/Ecommerse/Ecommerce/Server/src/controller/upload"
     );
   },
   filename: function (req, file, cb) {
@@ -49,6 +50,7 @@ exports.addProduct = async (req, res) => {
   try {
     upload(req, res, async function (err) {
       if (err) {
+        console.log(err);
         return res
           .status(500)
           .json({ success: false, error: "Error uploading files" });
@@ -59,8 +61,16 @@ exports.addProduct = async (req, res) => {
         let val = body?.highlight?.split(",");
         body["highlight"] = val;
       }
+      const ratings = Math.floor(Math.random() * (10000 - 1099 + 1)) + 1099;
+      const reviews = Math.floor(Math.random() * (1000 - 467 + 1)) + 467;
       const productId = await productQuery.createProduct(body);
-
+      const avgRating = Math.round((Math.random() * (5 - 2 + 1) + 2) * 10) / 10;
+      body = {
+        ...body,
+        ratings,
+        reviews,
+        avgRating,
+      };
       if (files && files.length > 0) {
         for (const file of files) {
           const { filename, mimetype, path } = file;
@@ -102,9 +112,9 @@ async function s3UploadData(fileName, contentType, filePath) {
 exports.fetchProductList = async (req, res) => {
   try {
     const { category, searchTxt, pageSize, pageNo } = req.query;
-
+    console.log("category", category, req.query);
     let data = await db.sequelize.query(
-      `call fetchProducts(:category,:product,:pageNo,:pageSize)`,
+      `call fetchProducts(:product,:category,:pageNo,:pageSize)`,
       {
         replacements: {
           category: category || -1,
@@ -114,6 +124,25 @@ exports.fetchProductList = async (req, res) => {
         },
       }
     );
+
+    console.log("rfrfrf", data[0]);
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      data[0],
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.fetchAllProductGroupwise = async (req, res) => {
+  try {
+    let data = await db.sequelize.query(`call fetchAllProductGroupwise()`, {
+      replacements: {},
+    });
 
     return response.sendResponse(
       constants.response_code.SUCCESS,

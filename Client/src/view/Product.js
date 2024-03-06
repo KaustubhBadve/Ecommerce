@@ -11,8 +11,7 @@ import { getProduct } from "../Redux/action";
 export const Product = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { product, offerSection } = useSelector((state) => state?.mainReducer);
-  console.log("offerSection", offerSection);
+  const { product } = useSelector((state) => state?.mainReducer);
 
   useEffect(() => {
     dispatch(getProduct(id));
@@ -24,7 +23,7 @@ export const Product = () => {
       <NavbarCategories />
       <div className="productPage">
         <ProductImages images={product?.productImages} />
-        <ProductDetails product={product} offerSection={offerSection} />
+        <ProductDetails product={product} />
       </div>
       <FooterFrontPage />
     </div>

@@ -10,9 +10,9 @@ import { getProductList } from "../Redux/action"
 export const ProductListing =()=>{
     const dispatch=useDispatch()
     const {products}=useSelector((state)=>state?.mainReducer)
-    useEffect(()=>{
-     dispatch(getProductList())
-    },[])
+    // useEffect(()=>{
+    //  dispatch(getProductList())
+    // },[])
     return (
         <div>
             <FrontPageNavbar/>

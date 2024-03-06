@@ -15,6 +15,7 @@ import {
 } from "../../Lib/Functions/getLocationData";
 import ModalPinCode from "./ModalForPinCode";
 import LoginModal from "../Login/LoginModal";
+import {locationn} from "../imports"
 
 const { Search } = Input;
 
@@ -56,7 +57,8 @@ export const FrontPageNavbar = () => {
       </div>
       {location && (
         <div className="navbar-top-location">
-          <TruckOutlined style={{ fontSize: "20px" }} />
+          <img src={locationn}/>
+          {/* <TruckOutlined style={{ fontSize: "20px" }} /> */}
           <p>
             {city}, {region}, {pincode}{" "}
             <EditOutlined

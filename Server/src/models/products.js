@@ -36,6 +36,18 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON,
       allowNull: true,
     },
+    reviews: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    ratings: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    avgRating: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

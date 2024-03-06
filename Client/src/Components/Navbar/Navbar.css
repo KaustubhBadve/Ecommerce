@@ -1,13 +1,13 @@
 .front-top-navbar {
-  background-color: rgb(244, 223, 169);
-  height: 80px;
+  background: linear-gradient(to right, #f7e9fa, #def4f0);
+  height: 7vh;
   display: flex;
   justify-content: space-evenly;
   padding: 10px 20px;
   align-items: center;
 }
 .front-top-navbar div:nth-child(1) {
-  width: 100px !important;
+  width: 90px !important;
 }
 .navbar-top-searchBar {
   width: 40% !important;
@@ -20,7 +20,6 @@ p {
   margin: 0;
 }
 .navbar-top-location {
-  background-color: rgb(241, 210, 131);
   font-size: 12px;
   padding: 20px 10px;
   max-width: 10%;
@@ -68,4 +67,8 @@ p {
   font-size: 12px;
   padding:  10px 12px;
   height: 100%;
+}
+.navbar-top-location img{
+ width: 25px;
+ height: 25px;
 }

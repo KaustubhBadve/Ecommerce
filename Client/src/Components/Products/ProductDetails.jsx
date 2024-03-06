@@ -25,6 +25,22 @@ export const ProductDetails = ({ product, offerSection }) => {
 
     setLoading(false);
   };
+
+  let ratingColor = product?.avgRating > 3 ? "green" : "red";
+  let discountedPrice = Math.round(
+    (product?.price * (100 - product?.offer)) / 100
+  );
+
+  const currentDate = new Date();
+  const randomDays = Math.floor(Math.random() * 5) + 2;
+  const deliveryDate = new Date(
+    currentDate.getTime() + randomDays * 24 * 60 * 60 * 1000
+  );
+  const formattedDate = deliveryDate.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+  });
+
   return (
     <div className="product-individual-main">
       <h2>{product?.title}</h2>
@@ -37,7 +53,7 @@ export const ProductDetails = ({ product, offerSection }) => {
       >
         <span
           style={{
-            backgroundColor: offerSection?.ratingColor,
+            backgroundColor: ratingColor,
             color: "white",
             padding: "2px 5px",
             borderRadius: "5px",
@@ -45,12 +61,12 @@ export const ProductDetails = ({ product, offerSection }) => {
             fontWeight: "500",
           }}
         >
-          {(offerSection?.randomRating)?.toLocaleString("en-IN")}{" "}
+          {(product?.avgRating)?.toLocaleString("en-IN")}{" "}
           <StarOutlined />
         </span>{" "}
-        {`${offerSection?.NoOfRating?.toLocaleString(
+        {`${product?.ratings?.toLocaleString(
           "en-IN"
-        )} Ratings & ${offerSection?.NoOfReviews?.toLocaleString(
+        )} Ratings & ${product?.reviews?.toLocaleString(
           "en-IN"
         )} Reviews`}
       </div>
@@ -61,7 +77,7 @@ export const ProductDetails = ({ product, offerSection }) => {
         }}
       >
         Extra ₹{" "}
-        {(product?.price - offerSection?.discountedPrice)?.toLocaleString(
+        {(product?.price - discountedPrice)?.toLocaleString(
           "en-IN"
         )}{" "}
         Off
@@ -73,7 +89,7 @@ export const ProductDetails = ({ product, offerSection }) => {
           marginTop: "0px",
         }}
       >
-        <h1>₹ {offerSection?.discountedPrice?.toLocaleString("en-IN")}</h1>
+        <h1>₹ {discountedPrice?.discountedPrice?.toLocaleString("en-IN")}</h1>
         <span
           style={{
             color: "grey",
@@ -83,7 +99,7 @@ export const ProductDetails = ({ product, offerSection }) => {
         >
           ₹ {product?.price?.toLocaleString("en-IN")}
         </span>
-        <h3 style={{ color: "green" }}>{offerSection?.discount}% Off</h3>
+        <h3 style={{ color: "green" }}>{product?.offer}% Off</h3>
       </div>
       <div>
         <ul>Available offers</ul>
@@ -158,7 +174,7 @@ export const ProductDetails = ({ product, offerSection }) => {
         <div>
           <li>
             No cost EMI starting from ₹{" "}
-            {Math.floor(offerSection?.discountedPrice / 3)?.toLocaleString(
+            {Math.floor(discountedPrice / 3)?.toLocaleString(
               "en-IN"
             )}
             /month

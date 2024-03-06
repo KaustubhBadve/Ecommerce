@@ -15,7 +15,7 @@ import OfferGrid3 from "../images/OfferGrid3.webp";
 import OfferGrid4 from "../images/OfferGrid4.webp";
 import OfferGrid5 from "../images/OfferGrid5.webp";
 import fAsssured from "../images/fAsssured.png";
-
+import locationn from "../images/location.png";
 
 export {
   slider1,
@@ -34,5 +34,6 @@ export {
   OfferGrid3,
   OfferGrid4,
   OfferGrid5,
-  fAsssured
+  fAsssured,
+  locationn
 };

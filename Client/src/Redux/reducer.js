@@ -1,10 +1,10 @@
-import { FETCH_CATEGORIES, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, SAVE_STATIC_OFFERS } from "./actionType";
+import { FETCH_CATEGORIES, FETCH_DATA_CATEGORY_WISE, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, SAVE_STATIC_OFFERS } from "./actionType";
 
 const InitialVal={
     categories:[],
     products:[],
     product:{},
-    offerSection:{}
+    organisedProducts:{}
 }
 
 export const Reducer=(state=InitialVal,{type,payload})=>{
@@ -26,13 +26,13 @@ export const Reducer=(state=InitialVal,{type,payload})=>{
                 ...state,
                 product:payload
             }
-        }  
-        case SAVE_STATIC_OFFERS:{
+        }   
+        case FETCH_DATA_CATEGORY_WISE:{
             return {
                 ...state,
-                offerSection:payload
+                organisedProducts:payload
             }
-        }  
+        }
         default:
             return state
             break;
