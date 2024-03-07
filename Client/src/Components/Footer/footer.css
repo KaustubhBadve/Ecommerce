@@ -1,11 +1,11 @@
 .footer-front-page {
     width: 100% !important;
     background-color: rgb(244, 227, 204);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(244, 189, 189, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: rgba(188, 169, 169, 0.25) 0px 54px 55px, rgba(244, 189, 189, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
   
   .footer-front-page-sub1 {
-    background-color: rgb(55, 41, 21);
+    background: linear-gradient(to right, #41567b, #182336);
     display: flex;
     flex-wrap: nowrap;
     padding: 10px 20px;
@@ -14,7 +14,7 @@
   .footer-front-page-sub1 div {
     flex: 1;
     text-align: left;
-    color: rgb(157, 205, 246);
+    color: rgb(248, 250, 252);
     font-size: small;
     line-height: 30px;
   }

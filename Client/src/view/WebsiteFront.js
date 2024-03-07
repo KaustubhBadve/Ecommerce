@@ -19,6 +19,9 @@ export const WebsiteFront = () => {
         images={[images.slider1, images.slider2, images.slider3]}
         clasName="frontPage"
       />
+       <FrontPageOffersGrid
+        images={[images.OfferGrid1, images.OfferGrid2, images.OfferGrid3, images.OfferGrid4, images.OfferGrid5]}
+      />
       <FrontPageOffers
         images={[
           images.frontpageoffer1,
@@ -29,9 +32,7 @@ export const WebsiteFront = () => {
           images.frontpageoffer6,
         ]}
       />
-      <FrontPageOffersGrid
-        images={[images.OfferGrid1, images.OfferGrid2, images.OfferGrid3, images.OfferGrid4, images.OfferGrid5]}
-      />
+     
       <FrontPageProductList data={organisedProducts} />
     </div>
   );

@@ -266,8 +266,8 @@ background-color: brown;
   margin-top: 20px;
 }
 .brand-name{
-color: rgb(245, 224, 224);
-background-color: rgb(85, 71, 71);
+color: white;
+background: linear-gradient(to left, #6e84a9, #244c90);
 padding: 10px 30px;
 font-weight: 550;
 font-style: italic;
@@ -275,7 +275,7 @@ border-radius: 5px 20px;
 }
 .category-name{
 color: rgb(240, 235, 235);
-background-color: rgb(226, 17, 163);
+background: linear-gradient(to right, #41567b, #182336);
 padding: 15px 80px;
 font-weight: 550;
 font-style: italic;
@@ -302,12 +302,12 @@ float: right;
 }
 .frontPage-readMore-op{
   width: 20%;
-  color: #f2f6f5;
+  color: #040724;
   cursor: pointer;
   padding: 4px 10px;
   font-size: 12px;
   font-weight: 550;
-  background: linear-gradient(to right, #025c4a, #0426e6);
+  background: linear-gradient(to right, #a8c2ee, #70a0f2);
   border-radius: 10px;
   display: flex;
   justify-content: center!important;
@@ -345,21 +345,27 @@ float: right;
 
     .product-individual-images-main {
       width: 100%;
+      margin: 0px;
+      padding: 0px;
       height: 80vh;
+      box-shadow:none;
     }
     .product-individual-images-main2 {
-      padding: 5px 5px;
+      max-width: 100%;
       flex-direction: column;
+      align-items: center;
       gap: 10px;
       height: 80%;
+      padding: 0px;
     }
     .product-individual-images-main2 > div:nth-child(1) {
-      width: 100%;
+      width: 95%;
       height: 20%;
       display: flex;
       flex-direction: row;
       gap: 15px;
       align-items: center;
+      justify-content: center;
       padding: 5px 0px;
     }
     .product-individual-images-main2 > div:nth-child(1)::-webkit-scrollbar {
@@ -394,7 +400,7 @@ float: right;
       height: auto;
       border-radius: 1px;
       text-align: left;
-      padding: 5px 5px 20px 10px ;
+      padding: 0px ;
       overflow:visible;
     }
     

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 export const ProductImages = ({ images, category }) => {
   const [selectedImage, setSelectedImage] = useState(
-    images?.length>0 ? images[2] : ''
+    images?.length> 0 ? images[2] : ''
   );
 
   const handleImageClick = (image) => {

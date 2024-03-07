@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100vw !important;
   background: linear-gradient(to right, #f6eef8, #f2fcfa);
+  font-family: 'Roboto', sans-serif;
 }
 
 code {
@@ -33,7 +34,7 @@ code {
 @media (max-width: 768px) {
   .productPage {
     flex-direction: column;
-    width: 100vw;
+    /* width: 100%; */
   }
   /* .productsListingPage {
     display: flex;
