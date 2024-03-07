@@ -47,3 +47,19 @@
 .image5 img:hover {
   cursor: pointer;
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+  .offerSection-grid {
+    grid-template-areas:
+      "image1 image2"
+      "image3 image5";
+      gap: 10px;
+      padding: 0px;
+  }
+  .image4{
+    display: none;
+  }
+}

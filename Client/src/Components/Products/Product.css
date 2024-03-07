@@ -226,8 +226,12 @@ background-color: brown;
 
 /* Product FrontPage */
 
+.frontPage-listing-item{
+  text-align: left;
+  padding: 10px;
+}
 .product-slider-main-div-mobile{
-  height: 40vh;
+  height: 50vh;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
 }
@@ -256,10 +260,6 @@ background-color: brown;
   font-size: 18px; 
   margin-top: 20px;
 }
-.frontPage-listing-item{
-  text-align: left;
-  padding: 10px;
-}
 .brand-name{
 color: rgb(245, 224, 224);
 background-color: rgb(85, 71, 71);
@@ -269,8 +269,8 @@ font-style: italic;
 border-radius: 5px 20px;
 }
 .category-name{
-color: rgb(245, 224, 224);
-background-color: rgb(45, 63, 62);
+color: rgb(240, 235, 235);
+background-color: rgb(226, 17, 163);
 padding: 15px 80px;
 font-weight: 550;
 font-style: italic;
@@ -291,4 +291,144 @@ float: right;
   font-size: 0.9rem;
   color: green;
   font-weight: 550;
+}
+.frontPage-productDisplay-brandrow{
+  margin: 20px;
+}
+.frontPage-readMore-op{
+  width: 20%;
+  color: #f2f6f5;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 550;
+  background: linear-gradient(to right, #025c4a, #0426e6);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center!important;
+  align-items: center;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .brand-name{
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 5px 10px;
+    }
+    .category-name{
+    padding: 5px 30px;
+    font-weight: 500;
+    border-radius: 30px 10px;
+    }
+    .product-slider-main-div-mobile img{
+      width: 50%;
+      height: 70%;
+      border-radius: 5px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+    .product-slider-front-bottom-div{
+      justify-content: space-evenly;
+      padding: 5px 20px;
+    }
+    .product-slider-main-div-tvs>img{
+      width: 70%;
+    }
+
+    /* Image Section media query */
+
+    .product-individual-images-main {
+      width: 100%;
+      height: 80vh;
+    }
+    .product-individual-images-main2 {
+      padding: 5px 5px;
+      flex-direction: column;
+      gap: 10px;
+      height: 80%;
+    }
+    .product-individual-images-main2 > div:nth-child(1) {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      padding: 5px 0px;
+    }
+    .product-individual-images-main2 > div:nth-child(1)::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .product-individual-images-main2 > div:nth-child(1) img {
+      height: 80%;
+      width: 100%;
+    }
+    .product-individual-images-main2 > div:nth-child(2) {
+      width: 100%;
+      height: 80%;
+    }
+    .product-individual-images-main2 > div:nth-child(2) img {
+      height: 40vh;
+      width: 100%;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .product-individual-images-main > div:nth-child(2) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    /* product details media query */
+
+    .product-individual-main {
+      width: 100%;
+      height: auto;
+      border-radius: 1px;
+      text-align: left;
+      padding: 5px 5px 20px 10px ;
+      overflow:visible;
+    }
+    
+    .product-individual-main::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .product-individual-main > div:nth-child(3) {
+      font-size: 13px;
+      line-height: 30px;
+    }
+    .product-individual-main > div:nth-child(2),
+    .product-individual-main > div:nth-child(3),
+    .product-individual-main > div:nth-child(4),
+    .product-individual-main > div:nth-child(5),
+    .product-individual-main > div:nth-child(6),
+    .product-individual-main > div:nth-child(7),
+    .product-individual-main > div:nth-child(8),
+    .product-individual-main > div:nth-child(9) {
+      font-size: 12px;
+      line-height: 23px;
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+      padding: 0px;
+    }
+    .product-individual-main > div > ul {
+      font-size: 0.9rem;
+      line-height: 20px;
+    }
+    .product-individual-main>h2:nth-child(1){
+      text-align: center;
+    } 
+    .product-individual-main > div:nth-child(2), 
+    .product-individual-main > div:nth-child(4){
+      justify-content: center;
+      /* border: 1px solid red; */
+    }
+    .product-individual-main>h4{
+      text-align: center;
+    } 
 }

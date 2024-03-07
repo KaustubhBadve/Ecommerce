@@ -55,7 +55,7 @@ export const FrontPageNavbar = () => {
   return (
     <div className="front-top-navbar">
       <div>
-        <img onClick={()=>navigate("/")} src={Logo} style={{width:"100%", height:"100%", borderRadius:"10px"}}/>
+        <img onClick={()=>navigate("/")} src={Logo}/>
       </div>
       {location && (
         <div className="navbar-top-location">
@@ -74,7 +74,7 @@ export const FrontPageNavbar = () => {
         onSearch={(value) => console.log("Searched:", value)}
         className="navbar-top-searchBar"
       />
-      <div className="navbar-top-icon">
+      <div className="navbar-top-icon-WishList">
         <HeartOutlined onClick={() => setModalLoginVisible(true)} />{" "}
         <p>Wish List</p>
       </div>

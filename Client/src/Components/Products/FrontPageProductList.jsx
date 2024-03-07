@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,22 @@ import { StarOutlined } from "@ant-design/icons";
 export const FrontPageProductList = ({ data }) => {
   const navigate = useNavigate();
   const [showMoreOffers, setShowMoreOffers] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth > 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize); 
+    };
+  }, [isMobile]);
+
   return (
     <div className="frontPage-listing-item">
       {Object.entries(data).map(([category, brands]) => (
@@ -17,11 +33,11 @@ export const FrontPageProductList = ({ data }) => {
           {Object.entries(brands)
             .slice(0, 2)
             .map(([brand, products]) => (
-              <div key={brand}>
-                <hr />
+              <div className="frontPage-productDisplay-brandrow" key={brand}>
+                <hr/>
                 <span className="brand-name">{brand.toUpperCase()}</span>
                 <Swiper
-                  slidesPerView={category == "tv's" ? 4 : 5}
+                  slidesPerView={ isMobile ? (category == "tv's" ? 4 : 5) : 1}
                   spaceBetween={category == "tv's" ? 10 : 45}
                   loop={true}
                   autoplay={{
@@ -77,12 +93,11 @@ export const FrontPageProductList = ({ data }) => {
             ))}
 
           {!showMoreOffers && Object.entries(brands)?.length > 2 && (
-            <p>
+            <p className ="frontPage-readMore-op">
               <span
-                style={{ color: "#357af1", cursor: "pointer" }}
                 onClick={() => setShowMoreOffers(true)}
               >
-                Read more
+                Explore more brands
               </span>
             </p>
           )}
@@ -95,7 +110,7 @@ export const FrontPageProductList = ({ data }) => {
                   <hr />
                   <span className="brand-name">{brand.toUpperCase()}</span>
                   <Swiper
-                    slidesPerView={category == "tv's" ? 4 : 5}
+                     slidesPerView={ isMobile ? (category == "tv's" ? 4 : 5) : 1}
                     spaceBetween={category == "tv's" ? 10 : 45}
                     loop={true}
                     autoplay={{
@@ -153,7 +168,7 @@ export const FrontPageProductList = ({ data }) => {
           {showMoreOffers && Object.entries(brands)?.length > 2 && (
             <p>
               <span
-                style={{ color: "#357af1", cursor: "pointer" }}
+                className ="frontPage-readMore-op"
                 onClick={() => setShowMoreOffers(false)}
               >
                 Hide
