@@ -2,11 +2,26 @@ import "./Product.css";
 import { images } from "../imports";
 import { StarOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 export const ProductList = ({ productList }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth > 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize); 
+    };
+  }, [isMobile]);
+
   return (
     <div className="product-list">
       {productList?.map((product) => {
@@ -23,7 +38,8 @@ export const ProductList = ({ productList }) => {
           day: "numeric",
           month: "long",
         });
-
+        const titleSlicedVal=!isMobile ? 40 : 70
+        const highlightSlicedVal=!isMobile ? 4 : 5
         return (
           <div
             className="product-list-Individual-main-div"
@@ -39,14 +55,10 @@ export const ProductList = ({ productList }) => {
             </div>
             <div>
               <h2 className="product-title">
-                {product?.title?.slice(0, 70)}{product?.title.length>70 ? "...":""}
+                {product?.title?.slice(0, titleSlicedVal)}{product?.title.length>titleSlicedVal ? "...":""}
               </h2>
               <div
-                style={{
-                  fontSize: "14px",
-                  fontWeight: "550",
-                  color: "#878787",
-                }}
+              className="rating-revies-row"
               >
                 <span
                   style={{
@@ -66,7 +78,7 @@ export const ProductList = ({ productList }) => {
                   "en-IN"
                 )} Reviews`}
               </div>
-              {product?.highlight.slice(0,4).map((highlight) => {
+              {product?.highlight.slice(0,highlightSlicedVal).map((highlight) => {
                 return <li>{highlight}</li>;
               })}
             </div>
