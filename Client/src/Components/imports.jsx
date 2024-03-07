@@ -17,4 +17,5 @@ export const images = {
   OfferGrid5: require("../images/OfferGrid5.webp"),
   fAsssured: require("../images/fAsssured.png"),
   locationn: require("../images/location.png"),
+  categoryNavbar: require("../images/categoryNavbar.png"),
 };

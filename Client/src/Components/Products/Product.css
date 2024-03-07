@@ -431,4 +431,12 @@ float: right;
     .product-individual-main>h4{
       text-align: center;
     } 
+
+
+
+    /* product Listing media queries */
+
+    .filter-sideBar-products {
+     display: none;
+    }
 }

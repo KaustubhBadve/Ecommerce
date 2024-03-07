@@ -28,60 +28,6 @@ p {
   max-width: 20%;
 }
 
-/* media queries for Main Navbar */
-
-@media screen and (max-width: 768px) {
-  .front-top-navbar {
-    padding: 5px 10px;
-  }
-  .front-top-navbar div:nth-child(1) {
-    width: 30px;
-  }
-
-  .navbar-top-searchBar {
-    display: none;
-  }
-
-  .navbar-top-location {
-    display: none;
-  }
-  /* navbar categories media query */
-  .navabr-categories-menu-true {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    padding: 10px 20px;
-    width: 50%;
-    float: right;
-    z-index: 3;
-    position: fixed;
-    right: 0;
-    top: 0;
-    background-color: rgba(222, 244, 240, 0.5);
-    backdrop-filter: blur(20px); 
-  }
-  
-  .navabr-categories-menu-false {
-    height: 3vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 5px 20px;
-  }
-  .menu-icon-false {
-    font-size: 25px;
-  }
-  .nav-elements-true {
-    text-align: left;
-    line-height: 50px;
-    font-weight: 550;
-  }
-  .nav-elements-false {
-    display: none;
-  }
-}
-
 .modal_for_upateLocation {
   text-align: center !important;
 }
@@ -128,4 +74,78 @@ p {
 .navbar-top-location img {
   width: 25px;
   height: 25px;
+}
+
+
+
+
+/* media queries for Main Navbar */
+
+@media screen and (max-width: 768px) {
+  .front-top-navbar {
+    padding: 5px 10px;
+  }
+  .front-top-navbar div:nth-child(1) {
+    width: 30px;
+  }
+
+  .navbar-top-searchBar {
+    display: none;
+  }
+
+  .navbar-top-location {
+    display: none;
+  }
+  
+  /* navbar categories media query */
+  .navabr-categories-menu-true {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px;
+    width: 60%;
+    float: right;
+    z-index: 3;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: rgba(222, 244, 240, 0.5);
+    backdrop-filter: blur(20px); 
+  }
+  .nav-elements-true ul{
+    margin: 0px;
+  }
+  
+  .nav-elements-true ul>li{
+    margin-top: 20px;
+    font-size: large;
+  }
+  .nav-elements-true ul>li:hover{
+    backdrop-filter: blur(50px);
+    cursor: pointer;
+    padding-left: 10px;
+  }
+
+  .navabr-categories-menu-false {
+    height: 3vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px 20px;
+  }
+  .menu-icon-false {
+    font-size: 25px;
+  }
+  .menu-icon-true {
+    font-size: 25px;
+  }
+  .nav-elements-true {
+    line-height: 2.6rem;
+    font-weight: 550;
+  }
+  .nav-elements-false {
+    display: none;
+  }
 }
