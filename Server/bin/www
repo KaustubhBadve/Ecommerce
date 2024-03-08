@@ -2,10 +2,12 @@ const express=require("express")
 
 const app = express()
 const db = require("../src/models");
-const router=require("../src/routes/ksb")
+const router=require("../src/routes/products")
+const authRouter=require("../src/routes/auth")
 
 app.use(express.json())
 app.use("/api",router)
+app.use("/api",authRouter)
 // db.sequelize.sync({ force: false, alter: true });
 
 const PORT = 3033

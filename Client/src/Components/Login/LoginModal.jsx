@@ -25,26 +25,31 @@ const LoginModal = ({ visible, onCancel }) => {
           <img src={login_img} />
         </div>
         <div className="modal_for_Login_div2">
-            <div style={{height:"50%"}}>
+          <div style={{ height: "50%" }}>
             <Input
-            placeholder="Enter Email/Mobile No"
-            // onChange={(e) => setPincodeVal(e.target.value)}
-            style={{
-              height: "20%",
-              marginBottom: "10px",
-              borderTop: "none",
-            }}
-          />
-          <p>
-            By continuing, you agree to Flipkart's Terms of Use and Privacy
-            Policy.
-          </p>
-          <Button style={{width:"90%", marginTop:"30px"}} type="primary" size="large" onClick={handleOk}>
-            Request OTP
-          </Button>
-            </div>
-          
-         <p>New to FlipKart? create an account</p>
+              placeholder="Enter Email/Mobile No"
+              // onChange={(e) => setPincodeVal(e.target.value)}
+              style={{
+                height: "20%",
+                marginBottom: "10px",
+                borderTop: "none",
+              }}
+            />
+            <p>
+              By continuing, you agree to Flipkart's Terms of Use and Privacy
+              Policy.
+            </p>
+            <Button
+              style={{ width: "90%", marginTop: "30px" }}
+              type="primary"
+              size="large"
+              onClick={handleOk}
+            >
+              Request OTP
+            </Button>
+          </div>
+
+          <p>New to FlipKart? create an account</p>
         </div>
       </div>
     </Modal>

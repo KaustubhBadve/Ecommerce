@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(
       null,
-      "/Users/kaustubhbadve/Desktop/Ecommerse/Ecommerce/Server/src/controller/upload"
+      "/Users/kaustubhbadve/Desktop/Ecommerse/Ecommerce/Server/src/upload"
     );
   },
   filename: function (req, file, cb) {
