@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataGroupWise, getProductList } from "../../Redux/action";
 import { useLocation } from "react-router-dom";
+import debounce from "lodash/debounce";
 import { Menu, Slider, Radio, Space } from "antd";
 import { StarFilled } from "@ant-design/icons";
 import "./Filter.css";
@@ -12,12 +13,11 @@ export const FilterSideBar = () => {
   const searchParams = new URLSearchParams(useLocation().search);
   const { organisedProducts } = useSelector((state) => state?.mainReducer);
   const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState(
-    searchParams?.get("category")
-  );
+  const [selectedCategory, setSelectedCategory] = useState(searchParams?.get("category"));
   const [selectedRatings, setSelectedRatings] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
-
+  const [selectedMinPriceRange, setMinPriceRange] = useState(null);
+  const [selectedMaxPriceRange, setMaxPriceRange] = useState(null);
   const [selectedDiscount, setSelectedDiscount] = useState(null);
   const [selectedOffer, setSelectedOffer] = useState(null);
 
@@ -54,9 +54,13 @@ export const FilterSideBar = () => {
     setSelectedCategory(category);
   };
 
-  const handlePricing =(val)=>{
-    console.log(val);
-  }
+  const handlePricing = useCallback(
+    debounce((val) => {
+     
+     
+    }, 1000),
+    []
+  );
 
   return (
     <div className="filter-sideBar-products">

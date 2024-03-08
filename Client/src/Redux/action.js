@@ -17,7 +17,7 @@ export const getCategoris = () => (dispatch) => {
     console.log(error);
   }
 };
-export const getProductList = (category, rating, brand,discount) => (dispatch) => {
+export const getProductList = (category, rating, brand,discount,priceMin,priceMax) => (dispatch) => {
   try {
     let url = `http://localhost:3033/api/getProduct`;
     let queryParams = [];
@@ -33,6 +33,12 @@ export const getProductList = (category, rating, brand,discount) => (dispatch) =
     }
     if (discount) {
       queryParams.push(`discount=${discount}`);
+    }
+    if (priceMin) {
+      queryParams.push(`discount=${priceMin}`);
+    }
+    if (priceMax) {
+      queryParams.push(`discount=${priceMax}`);
     }
 
     if (queryParams.length > 0) {
