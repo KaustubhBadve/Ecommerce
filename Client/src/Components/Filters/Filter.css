@@ -1,20 +1,27 @@
 .filter-sideBar-products {
-    width: 22%;
+    width: 21%;
     border-radius: 5px;
-    height: auto;
     min-height: 50vh;
     text-align: left;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 10px 20px;
-    position: fixed;
-    left: 0;
-    top: 30;
+    background-color: white;
   }
 
-
-
-
-
+  .menu-filter{
+    width: 100%;
+    font-weight: 550;
+    font-size: 0.8rem;
+    border-radius: 10px;
+  }
+  .ant-radio-wrapper{
+    margin: 5px;
+    padding: 5px;
+  }
+.ant-tag{
+    background: linear-gradient(to right, #41567b, #92afe0);
+    color: white;
+}
   @media (max-width: 768px) {
     .filter-sideBar-products {
         display: none;

@@ -2,8 +2,7 @@ import {
   FETCH_CATEGORIES,
   FETCH_DATA_CATEGORY_WISE,
   FETCH_PRODUCTS,
-  FETCH_SPECIFIC_PRODUCTS,
-  SAVE_STATIC_OFFERS,
+  FETCH_SPECIFIC_PRODUCTS
 } from "./actionType";
 
 export const getCategoris = () => (dispatch) => {
@@ -49,7 +48,7 @@ export const getProductList =
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data });
+          dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data || [] });
         });
     } catch (error) {
       console.log(error);

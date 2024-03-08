@@ -1,6 +1,6 @@
 import "./Product.css";
 import { images } from "../imports";
-import { StarTwoTone } from "@ant-design/icons";
+import { LinuxOutlined, StarTwoTone } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -15,14 +15,14 @@ export const ProductList = ({ productList }) => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); 
+      window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
 
-  return (
+  return productList?.length ? (
     <div className="product-list">
       {productList?.map((product) => {
         let ratingColor = product?.avgRating > 3 ? "green" : "red";
@@ -38,8 +38,8 @@ export const ProductList = ({ productList }) => {
           day: "numeric",
           month: "long",
         });
-        const titleSlicedVal=!isMobile ? 40 : 70
-        const highlightSlicedVal=!isMobile ? 4 : 5
+        const titleSlicedVal = !isMobile ? 40 : 70;
+        const highlightSlicedVal = !isMobile ? 4 : 5;
         return (
           <div
             className="product-list-Individual-main-div"
@@ -55,11 +55,10 @@ export const ProductList = ({ productList }) => {
             </div>
             <div>
               <h2 className="product-title">
-                {product?.title?.slice(0, titleSlicedVal)}{product?.title.length>titleSlicedVal ? "...":""}
+                {product?.title?.slice(0, titleSlicedVal)}
+                {product?.title.length > titleSlicedVal ? "..." : ""}
               </h2>
-              <div
-              className="rating-revies-row"
-              >
+              <div className="rating-revies-row">
                 <span
                   style={{
                     backgroundColor: ratingColor,
@@ -70,7 +69,7 @@ export const ProductList = ({ productList }) => {
                     fontWeight: "500",
                   }}
                 >
-                  {product?.avgRating} <StarTwoTone twoToneColor="white"/>
+                  {product?.avgRating} <StarTwoTone twoToneColor="white" />
                 </span>{" "}
                 {`${product?.ratings?.toLocaleString(
                   "en-IN"
@@ -78,9 +77,11 @@ export const ProductList = ({ productList }) => {
                   "en-IN"
                 )} Reviews`}
               </div>
-              {product?.highlight.slice(0,highlightSlicedVal).map((highlight) => {
-                return <li>{highlight}</li>;
-              })}
+              {product?.highlight
+                .slice(0, highlightSlicedVal)
+                .map((highlight) => {
+                  return <li>{highlight}</li>;
+                })}
             </div>
             <div>
               <div>
@@ -118,6 +119,19 @@ export const ProductList = ({ productList }) => {
           </div>
         );
       })}
+    </div>
+  ) : (
+    <div
+      className="product-list-NoData"
+      style={{
+        fontSize: "2rem",
+        fontWeight: 550,
+        color: "#394C6F",
+        fontStyle: "italic",
+      }}
+    >
+      <LinuxOutlined style={{textAlign:"center", fontSize:"5rem"}} />
+      No data found
     </div>
   );
 };

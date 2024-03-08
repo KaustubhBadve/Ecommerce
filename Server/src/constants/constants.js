@@ -3,7 +3,8 @@ module.exports = Object.freeze({
     table: {
       CATEGORY_MASTER: "categorymaster",
       PRODUCT_MASTER: "productmaster",
-      IMAGE_MASTER: "imagemaster"
+      IMAGE_MASTER: "imagemaster",
+      USERS_MASTER:"usersmaster"
     },
   },
   response_code: {

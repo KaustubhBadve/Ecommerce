@@ -4,8 +4,24 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
-  margin-left: 24%;
+  /* margin-left: 24%; */
+  min-height: 62vh;
+}
+.product-list-NoData{
+  width: 77%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* margin-left: 24%; */
+  min-height: 62vh;
+}
+.anticon svg{
+  text-align: center;
 }
 .product-list-Individual-main-div {
   display: flex;
@@ -444,6 +460,7 @@ float: right;
 
     .product-list {
       width: 100%;
+      margin-left: 0px;
     }
     .product-list-Individual-main-div {
       display: flex;
