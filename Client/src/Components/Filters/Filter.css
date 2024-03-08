@@ -1,0 +1,19 @@
+.filter-sideBar-products {
+    width: 22%;
+    border-radius: 5px;
+    height: auto;
+    min-height: 50vh;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px 20px;
+  }
+
+
+
+
+
+  @media (max-width: 768px) {
+    .filter-sideBar-products {
+        display: none;
+      }
+}

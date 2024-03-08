@@ -2,6 +2,7 @@ export const images = {
   slider1: require("../images/slider1.png"),
   slider2: require("../images/slider2.png"),
   slider3: require("../images/slider3.png"),
+  slider4: require("../images/slider4.png"),
   frontpageoffer1: require("../images/frontpageoofer1.webp"),
   frontpageoffer2: require("../images/frontpageoffer2.webp"),
   frontpageoffer3: require("../images/frontpageoffer3.webp"),

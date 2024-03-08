@@ -16,7 +16,7 @@ export const WebsiteFront = () => {
   return (
     <div>
       <Slider
-        images={[images.slider1, images.slider2, images.slider3]}
+        images={[images.slider1, images.slider2, images.slider3,images.slider4]}
         clasName="frontPage"
       />
        <FrontPageOffersGrid

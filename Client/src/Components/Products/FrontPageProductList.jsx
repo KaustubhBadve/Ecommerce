@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
-import { StarOutlined } from "@ant-design/icons";
+import { StarTwoTone } from "@ant-design/icons";
 
 export const FrontPageProductList = ({ data }) => {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ export const FrontPageProductList = ({ data }) => {
                                 fontWeight: "500",
                               }}
                             >
-                              {product?.avgRating} <StarOutlined />
+                              {product?.avgRating} <StarTwoTone twoToneColor="white" />
                             </span>
                           </div>
                         </div>
@@ -155,7 +155,7 @@ export const FrontPageProductList = ({ data }) => {
                                   fontWeight: "500",
                                 }}
                               >
-                                {product?.avgRating} <StarOutlined />
+                                {product?.avgRating} <StarTwoTone twoToneColor="red" />
                               </span>
                             </div>
                           </div>

@@ -56,35 +56,6 @@ export const NavbarCategories = () => {
 
   return (
     <>
-      {isMobile ? (
-        <div ref={sidebarRef} className={`navabr-categories-menu-${showMenu}`}>
-          <MenuOutlined
-            className={`menu-icon-${showMenu}`}
-            onClick={toggleMenu}
-          />
-          <div className={`nav-elements-${showMenu}`}>
-            <ul>
-              {categories?.map((item) => (
-                <li
-                  key={item.categoryName}
-                  onClick={() =>
-                    navigateToProducts(item.categoryName.toLowerCase())
-                  }
-                >
-                  {item.categoryName}
-                </li>
-              ))}
-            </ul>
-            <div>
-              <img
-                style={{ borderRadius: "10px" }}
-                src={images.categoryNavbar}
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      ) : (
         <div className="navabr-categories">
           {categories?.map((item) => (
             <div
@@ -97,7 +68,6 @@ export const NavbarCategories = () => {
             </div>
           ))}
         </div>
-      )}
     </>
   );
 };

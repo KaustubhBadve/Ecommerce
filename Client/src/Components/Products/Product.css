@@ -1,10 +1,4 @@
-.filter-sideBar-products {
-  width: 22%;
-  background-color: aliceblue;
-  border-radius: 5px;
-  height: 100vh;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
+
 .product-list {
   width: 77%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -446,10 +440,6 @@ float: right;
 
 
     /* product Listing media queries */
-
-    .filter-sideBar-products {
-     display: none;
-    }
 
     .product-list {
       width: 100%;

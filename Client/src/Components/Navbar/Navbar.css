@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-evenly;
   padding: 10px 20px;
-  align-items: center;
+  align-items: center !important;
 }
 .front-top-navbar div:nth-child(1) {
   width: 110px !important;
@@ -27,6 +27,9 @@ p {
   padding: 10px 10px;
   max-width: 20%;
 }
+.navbar-top-icon-cart{
+  font-size: 30px;
+}
 
 .modal_for_upateLocation {
   text-align: center !important;
@@ -48,10 +51,17 @@ p {
   align-items: center;
   margin-bottom: 3px;
 }
+.navabr-categories > div:hover{
+  text-decoration: underline;
+  font-size: 1rem;
+  color: rgb(116, 93, 93);
+}
 .navabr-categories > div {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s ease-in;
+  transform: translateX(30);
 }
 .productSell-top-navbar {
   background-color: rgb(244, 223, 169);
@@ -92,12 +102,21 @@ p {
   .navbar-top-searchBar {
     display: none;
   }
-
-  .navbar-top-location {
+  .navbar-top-icon,.navbar-top-icon-WishList{
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .navbar-top-icon-WishList > p, .navbar-top-icon>p,.navbar-top-location {
     display: none;
+  }
+  .front-top-navbar div:nth-child(1) > img {
+    width: 70%;
   }
   
   /* navbar categories media query */
+  .navabr-categories{
+    display: none;
+  }
   .navabr-categories-menu-true {
     height: 100vh;
     display: flex;
@@ -111,9 +130,11 @@ p {
     position: fixed;
     right: 0;
     top: 0;
-    background-color: rgba(222, 244, 240, 0.5);
+    text-align: left;
+    background-color: rgba(135, 169, 237, 0.5);
+    color: #06066f;
     backdrop-filter: blur(20px); 
-    transition: all 0.9s ease-in; /* Transition all properties */
+    transition: all 0.9s ease-in;
     transform: translateX(0);
   }
   .nav-elements-true ul{

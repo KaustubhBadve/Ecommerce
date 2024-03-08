@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { FilterSideBar } from "../Components/Products/FilterSideBar"
+import { FilterSideBar } from "../Components/Filters/FilterSideBar"
 import { ProductList } from "../Components/Products/ProductList"
 
 export const ProductListing =()=>{

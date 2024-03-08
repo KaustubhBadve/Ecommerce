@@ -1,4 +1,4 @@
-import { StarOutlined, StrikethroughOutlined } from "@ant-design/icons";
+import { StarTwoTone, StrikethroughOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { useState } from "react";
 import { findCityAndRegionFromPincode } from "../../Lib/Functions/getLocationData";
@@ -62,7 +62,7 @@ export const ProductDetails = ({ product }) => {
           }}
         >
           {(product?.avgRating)?.toLocaleString("en-IN")}{" "}
-          <StarOutlined />
+          <StarTwoTone twoToneColor="white" />
         </span>{" "}
         {`${product?.ratings?.toLocaleString(
           "en-IN"

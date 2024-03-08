@@ -1,6 +1,6 @@
 import "./Product.css";
 import { images } from "../imports";
-import { StarOutlined } from "@ant-design/icons";
+import { StarTwoTone } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -70,7 +70,7 @@ export const ProductList = ({ productList }) => {
                     fontWeight: "500",
                   }}
                 >
-                  {product?.avgRating} <StarOutlined />
+                  {product?.avgRating} <StarTwoTone twoToneColor="white"/>
                 </span>{" "}
                 {`${product?.ratings?.toLocaleString(
                   "en-IN"

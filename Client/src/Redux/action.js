@@ -17,10 +17,30 @@ export const getCategoris = () => (dispatch) => {
     console.log(error);
   }
 };
-
-export const getProductList = (category) => (dispatch) => {
+export const getProductList = (category, rating, brand,discount) => (dispatch) => {
   try {
-    fetch(`http://localhost:3033/api/getProduct?category=${category}`)
+    let url = `http://localhost:3033/api/getProduct`;
+    let queryParams = [];
+
+    if (category) {
+      queryParams.push(`category=${category}`);
+    }
+    if (rating) {
+      queryParams.push(`rating=${rating}`);
+    }
+    if (brand) {
+      queryParams.push(`brand=${brand}`);
+    }
+    if (discount) {
+      queryParams.push(`discount=${discount}`);
+    }
+
+    if (queryParams.length > 0) {
+      url += `?${queryParams.join('&')}`;
+    }
+    
+  
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data });
@@ -29,6 +49,8 @@ export const getProductList = (category) => (dispatch) => {
     console.log(error);
   }
 };
+
+
 
 export const getProduct = (id) => (dispatch) => {
   try {
