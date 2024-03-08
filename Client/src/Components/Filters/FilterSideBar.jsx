@@ -26,16 +26,19 @@ export const FilterSideBar = () => {
   }, []);
 
   useEffect(() => {
-    console.log();
+    console.log(selectedMinPriceRange,
+        selectedMaxPriceRange);
     dispatch(
       getProductList(
         selectedCategory,
         selectedRatings,
         selectedBrand,
-        selectedDiscount
+        selectedDiscount,
+        selectedMinPriceRange,
+        selectedMaxPriceRange
       )
     );
-  }, [selectedCategory, selectedRatings, selectedBrand, selectedDiscount]);
+  }, [selectedCategory, selectedRatings, selectedBrand, selectedDiscount,selectedMinPriceRange,selectedMaxPriceRange]);
 
   const handleRatings = (e) => {
     setSelectedRatings(e.target.value);
@@ -56,8 +59,8 @@ export const FilterSideBar = () => {
 
   const handlePricing = useCallback(
     debounce((val) => {
-     
-     
+        setMinPriceRange(val[0])
+        setMaxPriceRange(val[1])
     }, 1000),
     []
   );

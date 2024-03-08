@@ -17,46 +17,44 @@ export const getCategoris = () => (dispatch) => {
     console.log(error);
   }
 };
-export const getProductList = (category, rating, brand,discount,priceMin,priceMax) => (dispatch) => {
-  try {
-    let url = `http://localhost:3033/api/getProduct`;
-    let queryParams = [];
+export const getProductList =
+  (category, rating, brand, discount, priceMin, priceMax) => (dispatch) => {
+    try {
+      let url = `http://localhost:3033/api/getProduct`;
+      let queryParams = [];
 
-    if (category) {
-      queryParams.push(`category=${category}`);
-    }
-    if (rating) {
-      queryParams.push(`rating=${rating}`);
-    }
-    if (brand) {
-      queryParams.push(`brand=${brand}`);
-    }
-    if (discount) {
-      queryParams.push(`discount=${discount}`);
-    }
-    if (priceMin) {
-      queryParams.push(`discount=${priceMin}`);
-    }
-    if (priceMax) {
-      queryParams.push(`discount=${priceMax}`);
-    }
+      if (category) {
+        queryParams.push(`category=${category}`);
+      }
+      if (rating) {
+        queryParams.push(`rating=${rating}`);
+      }
+      if (brand) {
+        queryParams.push(`brand=${brand}`);
+      }
+      if (discount) {
+        queryParams.push(`discount=${discount}`);
+      }
+      if (priceMin) {
+        queryParams.push(`priceMin=${priceMin}`);
+      }
+      if (priceMax) {
+        queryParams.push(`priceMax=${priceMax}`);
+      }
 
-    if (queryParams.length > 0) {
-      url += `?${queryParams.join('&')}`;
+      if (queryParams.length > 0) {
+        url += `?${queryParams.join("&")}`;
+      }
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data });
+        });
+    } catch (error) {
+      console.log(error);
     }
-    
-  
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({ type: FETCH_PRODUCTS, payload: data?.data?.temp?.data });
-      });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
+  };
 
 export const getProduct = (id) => (dispatch) => {
   try {
@@ -72,14 +70,11 @@ export const getProduct = (id) => (dispatch) => {
 
 export const getDataGroupWise = () => (dispatch) => {
   try {
-
     fetch(`http://localhost:3033/api/getallproducts`)
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch({ type: FETCH_DATA_CATEGORY_WISE, payload: data.data.result });
-    });
-
-    
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: FETCH_DATA_CATEGORY_WISE, payload: data.data.result });
+      });
   } catch (error) {
     console.log(error);
   }

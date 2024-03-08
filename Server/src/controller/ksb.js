@@ -111,10 +111,10 @@ async function s3UploadData(fileName, contentType, filePath) {
 
 exports.fetchProductList = async (req, res) => {
   try {
-    const { category,rating, searchTxt, brand, discount,pageSize, pageNo } = req.query;
-    console.log("category", category, req.query);
+    const { category,rating, searchTxt, brand, discount,priceMin,priceMax,pageSize, pageNo } = req.query;
+    console.log("category", req.query);
     let data = await db.sequelize.query(
-      `call fetchProducts(:product,:category,:rating,:brand,:discount,:pageNo,:pageSize)`,
+      `call fetchProducts(:product,:category,:rating,:brand,:discount,:priceMin,:priceMax,:pageNo,:pageSize)`,
       {
         replacements: {
           product: searchTxt || -1,
@@ -122,6 +122,8 @@ exports.fetchProductList = async (req, res) => {
           rating: rating || -1,
           brand: brand || -1,
           discount: discount || -1,
+          priceMin:priceMin || 0,
+          priceMax:priceMax || -1,
           pageNo: pageNo || 1,
           pageSize: pageSize || 8,
         },
