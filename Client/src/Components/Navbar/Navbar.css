@@ -89,7 +89,9 @@ p {
   width: 25px;
   height: 25px;
 }
-
+.ant-modal-confirm-body-wrapper{
+  padding: 25px;
+}
 
 
 

@@ -1,0 +1,100 @@
+.product-list-cart {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  padding: 5px 20px;
+}
+
+.product-list-cart > div:nth-child(1) {
+  width: 60%;
+}
+.product-list-cart > div:nth-child(2) {
+  width: 30%;
+  border: 1px solid yellow;
+}
+
+
+
+
+
+
+
+.product-list-Individual-main-div-cart {
+  display: flex;
+  min-height: 150px;
+  max-height: 200px;
+  gap: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgb(248, 249, 250);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.product-list-Individual-main-div-cart > div {
+  flex: 1;
+  padding: 20px 10px;
+}
+
+.product-list-Individual-main-div-cart-mobile {
+  flex: 1.2 !important;
+  padding: 10px;
+}
+.product-list-Individual-main-div-cart-tvs {
+  flex: 1.2 !important;
+  padding: 10px;
+}
+.product-list-Individual-main-div-cart > div:nth-child(2) {
+  flex: 2.5;
+  text-align: left;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.product-list-Individual-main-div-cart > div:nth-child(1) img {
+  width: 60%;
+  height: 60%;
+  border-radius: 10px;
+}
+.product-list-Individual-main-div-cart > div:nth-child(2) > div:nth-child(2) {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 550;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 35%;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-list-Individual-main-div-cart > div:nth-child(2) > div:nth-child(2) img {
+  width: 45%;
+  height: 25px;
+  border-radius: 10px;
+}
+.product-list-Individual-main-div-cart > div:nth-child(2) > div:nth-child(3) {
+  font-size: 14px;
+  font-weight: 550;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.product-list-Individual-main-div-cart > div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0px;
+  }
+.product-list-Individual-main-div-cart > div:nth-child(3) > div:nth-child(1) {
+    width: 80%;
+  }
+
+
+
+.product-list-Individual-main-div-cart:hover .product-title {
+  color: rgb(0, 160, 151);
+}
+.product-list-Individual-main-div-cart:hover {
+  cursor: pointer;
+}

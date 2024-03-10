@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   addToWishList,
-  getDataGroupWise,
   getProductList,
   getWishListedItems,
 } from "../../Redux/action";

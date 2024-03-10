@@ -261,7 +261,7 @@ exports.fetchWishListItems = async (req, res) => {
         msg: `No Data`,
       });
       return response.sendResponse(
-        constant.response_code.BAD_REQUEST,
+        constants.response_code.BAD_REQUEST,
         null,
         null,
         res,
@@ -272,6 +272,117 @@ exports.fetchWishListItems = async (req, res) => {
       constants.response_code.SUCCESS,
       null,
       items[0].item,
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.addToCartList = async (req, res) => {
+  try {
+    const token = req.token;
+    const { productId } = req.params;
+    let userId = token?.id;
+
+    const alreadyExists = await wishlistQuery.findCartItem(userId);
+
+    if (alreadyExists) {
+      let productIds = alreadyExists?.cartProductIds;
+
+      await wishlistQuery.updateCartList(
+        {
+          cartProductIds: [...productIds, +productId],
+        },
+        { userId }
+      );
+    } else {
+      await wishlistQuery.createCartList({
+        cartProductIds: [+productId],
+        userId,
+      });
+    }
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      null,
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.removeFromCartList = async (req, res) => {
+  try {
+    const token = req.token;
+    const { productId } = req.params;
+    let userId = token?.id;
+
+    const alreadyExists = await wishlistQuery.findCartItem(userId);
+
+    if (!alreadyExists) {
+      errors.errors.push({
+        msg: `Cart Item empty`,
+      });
+      return response.sendResponse(
+        constants.response_code.BAD_REQUEST,
+        null,
+        null,
+        res,
+        errors
+      );
+    } else {
+      let productIds = alreadyExists?.productIds;
+      let updatedProductId = productIds.filter((id) => id != productId);
+      await wishlistQuery.updateCartList(
+        {
+          cartProductIds: updatedProductId,
+        },
+        { userId }
+      );
+    }
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      null,
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.fetchCartItems = async (req, res) => {
+  try {
+    const token = req.token;
+    let userId = token?.id;
+
+    let items = await db.sequelize.query(`call fetchCartItems(:userId)`, {
+      replacements: {
+        userId,
+      },
+    });
+
+    if (!items?.length) {
+      errors.errors.push({
+        msg: `No Data`,
+      });
+      return response.sendResponse(
+        constants.response_code.BAD_REQUEST,
+        null,
+        null,
+        res,
+        errors
+      );
+    }
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      items[0]?.item,
       res,
       null
     );

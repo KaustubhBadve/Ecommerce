@@ -157,15 +157,21 @@ export const FrontPageNavbar = () => {
     setPincode(val);
   };
 
-  const handleWishList = ()=>{
-    if(userName){
-      navigate("/wishlist")
+  const handleWishList = () => {
+    if (userName) {
+      navigate("/wishlist");
+    } else {
+      setModalLoginVisible(true);
     }
-    else{
-      setModalLoginVisible(true)
+  };
+
+  const handleCartList = () => {
+    if (userName) {
+      navigate("/cartItem");
+    } else {
+      setModalLoginVisible(true);
     }
-    
-  }
+  };
   return (
     <div className="front-top-navbar">
       <div>
@@ -189,10 +195,7 @@ export const FrontPageNavbar = () => {
         className="navbar-top-searchBar"
       />
       <div className="navbar-top-icon-WishList">
-        <HeartTwoTone
-          twoToneColor="#182336"
-          onClick={() => handleWishList()}
-        />{" "}
+        <HeartTwoTone twoToneColor="#182336" onClick={() => handleWishList()} />{" "}
         <p>Wish List</p>
       </div>
       <div className="navbar-top-icon">
@@ -208,13 +211,17 @@ export const FrontPageNavbar = () => {
             </div>
           </Dropdown>
         ) : (
-          <div>
+          <div onClick={() => handleWishList()}>
             <UserOutlined />
             <p>Hi, Sign In</p>
           </div>
         )}
       </div>
-      <div className="navbar-top-icon-cart">
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => handleCartList()}
+        className="navbar-top-icon-cart"
+      >
         <ShoppingCartOutlined />
       </div>
 
@@ -240,7 +247,7 @@ export const FrontPageNavbar = () => {
             <div>
               <img
                 style={{ borderRadius: "10px" }}
-                src={images.categoryNavbar}
+                src={images?.categoryNavbar}
                 alt=""
               />
             </div>

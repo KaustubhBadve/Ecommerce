@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES, FETCH_DATA_CATEGORY_WISE, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, FETCH_WISHLIST, LOGIN_SUCCESS, LOGOUT_SUCCESS, SAVE_STATIC_OFFERS, SIGNUP_FAILURE, SIGNUP_SUCCESS } from "./actionType";
+import { ADD_TO_CART, FETCH_CATEGORIES, FETCH_DATA_CATEGORY_WISE, FETCH_FROM_CART, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, FETCH_WISHLIST, LOGIN_SUCCESS, LOGOUT_SUCCESS, REMOVE_FROM_CART, SAVE_STATIC_OFFERS, SIGNUP_FAILURE, SIGNUP_SUCCESS } from "./actionType";
 import Cookies from "js-cookie";
 
 let userToken = Cookies.get("currentUser")
@@ -16,7 +16,8 @@ const InitialVal={
     organisedProducts:{},
     userName: userName,
     token:userToken,
-    wishListItem:[]
+    wishListItem:[],
+    cart:[]
 }
 
 export const Reducer=(state=InitialVal,{type,payload})=>{
@@ -71,6 +72,24 @@ export const Reducer=(state=InitialVal,{type,payload})=>{
             return {
                 ...state,
                 wishListItem:payload
+            }
+        }
+        case ADD_TO_CART:{
+            return {
+                ...state,
+                cart:payload
+            }
+        }
+        case REMOVE_FROM_CART:{
+            return {
+                ...state,
+                cart:payload
+            }
+        }
+        case FETCH_FROM_CART:{
+            return {
+                ...state,
+                cart:payload
             }
         }
         default:

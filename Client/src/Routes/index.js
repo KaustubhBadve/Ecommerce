@@ -17,6 +17,7 @@
 
 
 import { Routes, Route } from "react-router-dom";
+import { Cart } from "../Components/Cart/Cart";
 import { WishList } from "../Components/WishList/WishList";
 import AllRoutesLayout from "../view/Layout";
 import { Product } from "../view/Product";
@@ -64,6 +65,14 @@ export default function AllRoutes() {
         element={
           <AllRoutesLayout>
             <WishList />
+          </AllRoutesLayout>
+        }
+      />
+      <Route
+        path="/cartItem"
+        element={
+          <AllRoutesLayout>
+            <Cart />
           </AllRoutesLayout>
         }
       />

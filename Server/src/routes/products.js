@@ -17,4 +17,11 @@ router.get("/getallproducts",products.fetchAllProductGroupwise)
 router.post("/addtowishlist/:productId",validateToken(),products.addToWishList)
 
 router.get("/wishlisteditems",validateToken(),products.fetchWishListItems)
+
+router.post("/addtocart/:productId",validateToken(),products.addToCartList)
+
+router.get("/cartitems",validateToken(),products.fetchCartItems)
+
+router.post("/removefromcart/:productId",validateToken(),products.removeFromCartList)
+
 module.exports = router;

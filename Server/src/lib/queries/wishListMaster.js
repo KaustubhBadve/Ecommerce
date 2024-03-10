@@ -18,16 +18,30 @@ findWishListingItem = async function (userId) {
   return user ? user.dataValues : null;
 };
 
-checkCatalogItemIds = async function(itemIds) {
-    return await db[constants.DB.table.WISH_LIST_MASTER].findAll({
-      where: { id: itemIds },
-      attributes: ["id","price"],
-    });
+createCartList = async function (body) {
+  return await db[constants.DB.table.CART_MASTER].create(body);
 };
+
+updateCartList = async function (obj, query) {
+  await db[constants.DB.table.CART_MASTER].update(obj, {
+    where: query,
+  });
+};
+
+findCartItem = async function (userId) {
+  const user = await db[constants.DB.table.CART_MASTER].findOne({
+    where: { userId },
+  });
+  return user ? user.dataValues : null;
+};
+
 
 
 module.exports = {
   createWishList,
   updateWishList,
-  findWishListingItem
+  findWishListingItem,
+  createCartList,
+  updateCartList,
+  findCartItem
 };

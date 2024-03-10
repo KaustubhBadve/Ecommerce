@@ -1,12 +1,15 @@
 import {
+  ADD_TO_CART,
   ADD_TO_WISHLIST,
   FETCH_CATEGORIES,
   FETCH_DATA_CATEGORY_WISE,
+  FETCH_FROM_CART,
   FETCH_PRODUCTS,
   FETCH_SPECIFIC_PRODUCTS,
   FETCH_WISHLIST,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  REMOVE_FROM_CART,
   SIGNUP_SUCCESS,
 } from "./actionType";
 import Cookies from "js-cookie";
@@ -165,6 +168,70 @@ export const getWishListedItems = () => async (dispatch) => {
       .then((data) => {
         console.log("data", data?.data);
         dispatch({ type: FETCH_WISHLIST, payload: data?.data });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addToCart = (id) => async (dispatch) => {
+  try {
+    let userToken = JSON.parse(Cookies.get("currentUser")).token;
+   console.log("id",id);
+    await fetch(`http://localhost:3033/api/addtocart/${id}`, {
+      method: "post",
+      headers: {
+        authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: ADD_TO_CART ,payload:data?.data});
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCartItems = () => async (dispatch) => {
+  try {
+    let userToken = JSON.parse(Cookies.get("currentUser")).token;
+
+    console.log("userToken", userToken);
+
+    await fetch(`http://localhost:3033/api/cartitems`, {
+      method: "get",
+      headers: {
+        authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data?.data);
+        dispatch({ type: FETCH_FROM_CART, payload: data?.data });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const reomveCartItems = (id) => async (dispatch) => {
+  try {
+    let userToken = JSON.parse(Cookies.get("currentUser")).token;
+
+    console.log("userToken", userToken);
+
+    await fetch(`http://localhost:3033/api/removefromcart/${id}`, {
+      method: "post",
+      headers: {
+        authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data?.data);
+        dispatch({ type: REMOVE_FROM_CART, payload: data?.data });
       });
   } catch (error) {
     console.log(error);

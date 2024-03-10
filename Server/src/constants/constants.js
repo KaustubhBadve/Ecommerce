@@ -6,6 +6,7 @@ module.exports = Object.freeze({
       IMAGE_MASTER: "imagemaster",
       USERS_MASTER:"usersmaster",
       WISH_LIST_MASTER:"wishlistmaster",
+      CART_MASTER:"cartmaster",
     },
   },
   response_code: {
