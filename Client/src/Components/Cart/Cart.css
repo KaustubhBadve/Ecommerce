@@ -1,16 +1,18 @@
 .product-list-cart {
   display: flex;
   width: 100%;
-  gap: 30px;
-  padding: 5px 20px;
+  justify-content: space-evenly;
+  padding: 5px 10px;
 }
 
 .product-list-cart > div:nth-child(1) {
   width: 60%;
 }
 .product-list-cart > div:nth-child(2) {
-  width: 30%;
-  border: 1px solid yellow;
+  width: 25%;
+  padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  max-height: 50vh;
 }
 
 
@@ -27,7 +29,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: rgb(248, 249, 250);
   border-radius: 5px;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .product-list-Individual-main-div-cart > div {
   flex: 1;
@@ -97,4 +99,21 @@
 }
 .product-list-Individual-main-div-cart:hover {
   cursor: pointer;
+}
+
+/* Cart Section Pricing */
+
+.cart-pricing-section>h2{
+ color: gray;
+}
+.cart-pricing-section>div:nth-child(3){
+ display: flex;
+ flex-direction: column;    
+  gap: 15px;
+}
+.cart-pricing-section>div:nth-child(3)>div{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 1rem;
 }

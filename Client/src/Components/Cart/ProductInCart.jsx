@@ -33,12 +33,18 @@ export const ProductInCart = ({ productList, wishList = 0 }) => {
     };
   }, [isMobile]);
 
-  const totalPrice = productList.reduce((total, product) => {
-    let discountedPrice = Math.round(
-      (product.price * (100 - product.offer)) / 100
-    );
-    return total + discountedPrice * count;
-  }, 0);
+  const { totalPrice, totalDiscount } = productList.reduce(
+    (totals, product) => {
+      let originalPrice = product.price * count;
+      let discountedPrice =
+        Math.round((product.price * (100 - product.offer)) / 100) * count;
+      return {
+        totalPrice: totals.totalPrice + originalPrice,
+        totalDiscount: totals.totalDiscount + (originalPrice - discountedPrice),
+      };
+    },
+    { totalPrice: 0, totalDiscount: 0 }
+  );
 
   return (
     <div className="product-list-cart">
@@ -131,11 +137,49 @@ export const ProductInCart = ({ productList, wishList = 0 }) => {
           </div>
         )}
       </div>
-      <div>
+      <div className="cart-pricing-section">
         <h2>PRICE DETAILS</h2>
         <hr />
-        <p>Price ({productList.length} Items)</p>
-        <p>Final Total Price: ₹ {totalPrice.toLocaleString("en-IN")}</p>
+        <div>
+          <div>
+            <p>Price ({productList.length} Items)</p>
+            <p>₹ {totalPrice.toLocaleString("en-IN")}</p>
+          </div>
+          <div>
+            <p>Discount</p>
+            <p style={{ color: "green" }}>
+              - ₹ {totalDiscount.toLocaleString("en-IN")}
+            </p>
+          </div>
+          <div>
+            <p>Delivery Charges</p>
+            <p>
+              <span style={{ textDecoration: "line-through" }}>₹ 40 </span>{" "}
+              <span style={{ color: "green" }}>Free</span>
+            </p>
+          </div>
+          <div>
+            <p>Secured Packaging Fee</p>
+            <p>₹ 99</p>
+          </div>
+
+          <hr />
+          <div>
+            <p>Total Amount</p>
+            <p>₹{(totalPrice - totalDiscount + 99).toLocaleString("en-IN")}</p>
+          </div>
+        </div>
+        <p style={{ color: "green", fontWeight: "550", marginTop: "30px" }}>
+          You will save ₹{(totalDiscount - 40).toLocaleString("en-IN")} on this
+          order
+        </p>
+        <Button
+          style={{ backgroundColor: "#FB641B", color: "white", width:"60%", marginTop:"30px" }}
+          type="primary"
+          size={"large"}
+        >
+          PLACE ORDER
+        </Button>
       </div>
     </div>
   );
