@@ -20,9 +20,9 @@ deleteUser = async function (id) {
   );
 };
 
-getUserByMobileNo = async function (mobileNo) {
+getUserByEmail = async function (email) {
   const user = await db[constants.DB.table.USERS_MASTER].findOne({
-    where: { isDeleted: 0, mobileNo },
+    where: { isDeleted: 0, email },
   });
   return user ? user.dataValues : null;
 };
@@ -49,7 +49,7 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  getUserByMobileNo,
+  getUserByEmail,
   getUsersList,
   getUserById,
   getUserByIdForBuyer

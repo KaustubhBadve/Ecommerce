@@ -20,6 +20,17 @@
   /* margin-left: 24%; */
   min-height: 62vh;
 }
+.wishList_Side_bar{
+  width: 22%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* margin-left: 24%; */
+  height: 75vh;
+}
 .anticon svg{
   text-align: center;
 }
@@ -540,5 +551,11 @@ float: right;
     }
     .product-list-Individual-main-div:hover {
       cursor: pointer;
+    }
+    .wishList_Side_bar{
+      display: none;
+    }
+    .product-list-NoData{
+      width: 100%;
     }
 }

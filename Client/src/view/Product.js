@@ -16,7 +16,7 @@ export const Product = () => {
 
   return (
       <div className="productPage">
-        <ProductImages images={product?.productImages} category={product?.category} />
+        <ProductImages images={product?.productImages} product={product} category={product?.category} />
         <ProductDetails product={product} />
       </div>
   );

@@ -1,10 +1,22 @@
-import { FETCH_CATEGORIES, FETCH_DATA_CATEGORY_WISE, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, SAVE_STATIC_OFFERS } from "./actionType";
+import { FETCH_CATEGORIES, FETCH_DATA_CATEGORY_WISE, FETCH_PRODUCTS, FETCH_SPECIFIC_PRODUCTS, FETCH_WISHLIST, LOGIN_SUCCESS, LOGOUT_SUCCESS, SAVE_STATIC_OFFERS, SIGNUP_FAILURE, SIGNUP_SUCCESS } from "./actionType";
+import Cookies from "js-cookie";
+
+let userToken = Cookies.get("currentUser")
+  ? JSON.parse(Cookies.get("currentUser")).token
+  : "";
+
+let userName = Cookies.get("currentUser")
+  ? JSON.parse(Cookies.get("currentUser")).name
+  : "";
 
 const InitialVal={
     categories:[],
     products:[],
     product:{},
-    organisedProducts:{}
+    organisedProducts:{},
+    userName: userName,
+    token:userToken,
+    wishListItem:[]
 }
 
 export const Reducer=(state=InitialVal,{type,payload})=>{
@@ -31,6 +43,34 @@ export const Reducer=(state=InitialVal,{type,payload})=>{
             return {
                 ...state,
                 organisedProducts:payload
+            }
+        }
+
+        case LOGIN_SUCCESS:{
+            return {
+                ...state,
+                product:payload
+            }
+        }   
+        case SIGNUP_SUCCESS:{
+            return {
+                ...state,
+                token:payload.token,
+                user:payload.user
+            }
+        }
+        case LOGOUT_SUCCESS:{
+            return {
+                ...state,
+                token:"",
+                userName:""
+            }
+        }
+        case FETCH_WISHLIST:{
+            console.log("payload in wishreducer",payload);
+            return {
+                ...state,
+                wishListItem:payload
             }
         }
         default:

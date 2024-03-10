@@ -2,6 +2,7 @@ require("dotenv").config();
 const constants = require("../constants/constants");
 const categoryQuery = require("../lib/queries/categorymaster");
 const productQuery = require("../lib/queries/product");
+const wishlistQuery = require("../lib/queries/wishListMaster");
 const response = require("../lib/response");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const multer = require("multer");
@@ -111,10 +112,20 @@ async function s3UploadData(fileName, contentType, filePath) {
 
 exports.fetchProductList = async (req, res) => {
   try {
-    const { category,rating, searchTxt, brand, discount,priceMin,priceMax,pageSize, pageNo } = req.query;
-    console.log("category", req.query);
+    const {
+      category,
+      rating,
+      searchTxt,
+      brand,
+      discount,
+      priceMin,
+      priceMax,
+      pageSize,
+      pageNo,
+      userId,
+    } = req.query;
     let data = await db.sequelize.query(
-      `call fetchProducts(:product,:category,:rating,:brand,:discount,:priceMin,:priceMax,:pageNo,:pageSize)`,
+      `call fetchProducts(:product,:category,:rating,:brand,:discount,:priceMin,:priceMax,:pageNo,:pageSize,:userId)`,
       {
         replacements: {
           product: searchTxt || -1,
@@ -122,15 +133,14 @@ exports.fetchProductList = async (req, res) => {
           rating: rating || -1,
           brand: brand || -1,
           discount: discount || -1,
-          priceMin:priceMin || 0,
-          priceMax:priceMax || -1,
+          priceMin: priceMin || 0,
+          priceMax: priceMax || -1,
           pageNo: pageNo || 1,
           pageSize: pageSize || 8,
+          userId: userId || -1,
         },
       }
     );
-
-    console.log("data from fetchProducts", data[0]);
     return response.sendResponse(
       constants.response_code.SUCCESS,
       null,
@@ -145,9 +155,13 @@ exports.fetchProductList = async (req, res) => {
 
 exports.fetchAllProductGroupwise = async (req, res) => {
   try {
-    let data = await db.sequelize.query(`call fetchAllProductGroupwise()`, {
-      replacements: {},
-    });
+    const { userId } = req.query;
+    let data = await db.sequelize.query(
+      `call fetchAllProductGroupwise(:userId)`,
+      {
+        replacements: { userId: userId || -1 },
+      }
+    );
 
     return response.sendResponse(
       constants.response_code.SUCCESS,
@@ -164,10 +178,11 @@ exports.fetchAllProductGroupwise = async (req, res) => {
 exports.fetchProductData = async (req, res) => {
   try {
     const { id } = req.params;
-
-    let data = await db.sequelize.query(`call fetchProduct(:id)`, {
+    const { userId } = req.query;
+    let data = await db.sequelize.query(`call fetchProduct(:id,:userId)`, {
       replacements: {
         id,
+        userId: userId || -1,
       },
     });
 
@@ -175,6 +190,88 @@ exports.fetchProductData = async (req, res) => {
       constants.response_code.SUCCESS,
       null,
       data[0],
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.addToWishList = async (req, res) => {
+  try {
+    const token = req.token;
+    const { productId } = req.params;
+    let userId = token?.id;
+
+    const alreadyExists = await wishlistQuery.findWishListingItem(userId);
+
+    if (alreadyExists) {
+      let productIds = alreadyExists?.productIds;
+      if (productIds.includes(+productId)) {
+        let updatedProductId = productIds.filter((id) => id != productId);
+        await wishlistQuery.updateWishList(
+          {
+            productIds: updatedProductId,
+          },
+          { userId }
+        );
+      } else {
+        await wishlistQuery.updateWishList(
+          {
+            productIds: [...productIds, +productId],
+          },
+          { userId }
+        );
+      }
+    } else {
+      await wishlistQuery.createWishList({
+        productIds: [+productId],
+        userId,
+      });
+    }
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      null,
+      res,
+      null
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.fetchWishListItems = async (req, res) => {
+  try {
+    const token = req.token;
+    let userId = token?.id;
+
+    let items = await db.sequelize.query(
+      `call fetchWishListingItems(:userId)`,
+      {
+        replacements: {
+          userId,
+        },
+      }
+    );
+
+    if (!items?.length) {
+      errors.errors.push({
+        msg: `No Data`,
+      });
+      return response.sendResponse(
+        constant.response_code.BAD_REQUEST,
+        null,
+        null,
+        res,
+        errors
+      );
+    }
+    return response.sendResponse(
+      constants.response_code.SUCCESS,
+      null,
+      items[0].item,
       res,
       null
     );

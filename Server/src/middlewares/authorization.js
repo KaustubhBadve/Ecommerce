@@ -2,7 +2,7 @@ const response = require("../lib/response");
 const constant = require("../constants/constants");
 const jwt = require("jsonwebtoken");
 
-const validateToken = (role) => (req, res, next) => {
+const validateToken = () => (req, res, next) => {
   let token = req.headers.authorization;
   if (token) {
     token = token.substring(7);
@@ -16,16 +16,7 @@ const validateToken = (role) => (req, res, next) => {
           null
         );
       } else {
-        if (decoded.role !== role) {
-          return response.sendResponse(
-            constant.response_code.UNAUTHORIZED,
-            `You are not authorized to access this route as a ${role}`,
-            null,
-            res,
-            null
-          );
-        }
-        req.user = decoded;
+        req.token={id:decoded?.id}
         return next();
       }
     });

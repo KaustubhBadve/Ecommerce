@@ -4,21 +4,23 @@
     width: 43vw;
 }
 .modal_for_Login_div1{
-    width: 35%;
-    background-color: rgb(115, 176, 241);
+    width: 40%;
+    background: linear-gradient(to right, #41567b, #182336);
     padding: 40px 20px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    color: white;
 }
 .modal_for_Login_div2{
-    width: 65%;
-    background-color: rgb(212, 220, 228);
+    width: 60%;
+    background: linear-gradient(to right, #f6eef8, #f2fcfa);
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid yellowgreen;
 }
 .modal_for_Login_div2>p{
     color: blue;
@@ -30,4 +32,9 @@
 
 .ant-modal .ant-modal-content {
     padding: 0px 0px;
+}
+.ant-form{
+    width: 80%;
+    background: linear-gradient(to right, #f6eef8, #f2fcfa);
+    padding: 15px;
 }

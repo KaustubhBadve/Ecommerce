@@ -25,12 +25,7 @@ const Errors = {
       .notEmpty()
   ],
   USER_LOGIN: [
-    check("userName", "userName should not be empty").notEmpty(),
-    check("mobileNo", "Mobile No should be numeric and length must be 10 digit")
-      .isNumeric()
-      .isInt({ gt: 999999999 })
-      .notEmpty()
-      .isLength({ min: 10, max: 10 }),
+    check("email", "Email should not be empty").notEmpty(),
     check("password", "Please enter the valid password")
       .isString()
       .notEmpty()

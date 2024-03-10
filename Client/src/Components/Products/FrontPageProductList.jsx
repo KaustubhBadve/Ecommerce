@@ -3,12 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
-import { StarTwoTone } from "@ant-design/icons";
+import { HeartFilled, StarTwoTone } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { addToWishList, getDataGroupWise } from "../../Redux/action";
 
 export const FrontPageProductList = ({ data }) => {
   const navigate = useNavigate();
   const [showMoreOffers, setShowMoreOffers] = useState(false);
-
+  const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -17,10 +19,10 @@ export const FrontPageProductList = ({ data }) => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); 
+      window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
 
@@ -34,10 +36,10 @@ export const FrontPageProductList = ({ data }) => {
             .slice(0, 2)
             .map(([brand, products]) => (
               <div className="frontPage-productDisplay-brandrow" key={brand}>
-                <hr/>
+                <hr />
                 <span className="brand-name">{brand.toUpperCase()}</span>
                 <Swiper
-                  slidesPerView={ isMobile ? (category == "tv's" ? 4 : 5) : 1}
+                  slidesPerView={isMobile ? (category == "tv's" ? 4 : 5) : 1}
                   spaceBetween={category == "tv's" ? 10 : 45}
                   loop={true}
                   autoplay={{
@@ -50,21 +52,45 @@ export const FrontPageProductList = ({ data }) => {
                     let discountedPrice = Math.round(
                       (product?.price * (100 - product?.offer)) / 100
                     );
-                    let ratingColor = product?.avgRating > 3 ? "green" : "red";
+                    let ratingColor =
+                      product?.avgRating > 3 ? "green" : "#ff5857";
+                    var heartColor = product.isFavourate
+                      ? "#ff5857"
+                      : "#c8c8c8";
+                    const handleHeartClick = (id) => {
+                      dispatch(addToWishList(id));
+
+                      setTimeout(() => {
+                        dispatch(getDataGroupWise());
+                      }, 1000);
+                    };
                     return (
                       <SwiperSlide key={index}>
                         <div
                           className={`product-slider-main-div-${
                             category == "tv's" ? "tvs" : "mobile"
                           }`}
-                          onClick={() => navigate(`/product/${product?.id}`)}
                         >
                           <img
                             src={product?.productImages[0]}
                             alt={product?.title}
                           />
+                          <HeartFilled
+                            style={{
+                              position: "absolute",
+                              top: "10px",
+                              right: "0px",
+                              color: heartColor,
+                              fontSize: "24px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleHeartClick(product.id)}
+                          />
                           <h4>{product?.title?.slice(0, 30)}...</h4>
-                          <div className="product-slider-front-bottom-div">
+                          <div
+                            onClick={() => navigate(`/product/${product?.id}`)}
+                            className="product-slider-front-bottom-div"
+                          >
                             <div>
                               <b>
                                 ₹ {discountedPrice?.toLocaleString("en-IN")}
@@ -81,7 +107,8 @@ export const FrontPageProductList = ({ data }) => {
                                 fontWeight: "500",
                               }}
                             >
-                              {product?.avgRating} <StarTwoTone twoToneColor="white" />
+                              {product?.avgRating}{" "}
+                              <StarTwoTone twoToneColor="white" />
                             </span>
                           </div>
                         </div>
@@ -93,10 +120,8 @@ export const FrontPageProductList = ({ data }) => {
             ))}
 
           {!showMoreOffers && Object.entries(brands)?.length > 2 && (
-            <p className ="frontPage-readMore-op">
-              <span
-                onClick={() => setShowMoreOffers(true)}
-              >
+            <p className="frontPage-readMore-op">
+              <span onClick={() => setShowMoreOffers(true)}>
                 Explore more brands
               </span>
             </p>
@@ -110,7 +135,7 @@ export const FrontPageProductList = ({ data }) => {
                   <hr />
                   <span className="brand-name">{brand.toUpperCase()}</span>
                   <Swiper
-                     slidesPerView={ isMobile ? (category == "tv's" ? 4 : 5) : 1}
+                    slidesPerView={isMobile ? (category == "tv's" ? 4 : 5) : 1}
                     spaceBetween={category == "tv's" ? 10 : 45}
                     loop={true}
                     autoplay={{
@@ -155,7 +180,8 @@ export const FrontPageProductList = ({ data }) => {
                                   fontWeight: "500",
                                 }}
                               >
-                                {product?.avgRating} <StarTwoTone twoToneColor="red" />
+                                {product?.avgRating}{" "}
+                                <StarTwoTone twoToneColor="red" />
                               </span>
                             </div>
                           </div>
@@ -168,7 +194,7 @@ export const FrontPageProductList = ({ data }) => {
           {showMoreOffers && Object.entries(brands)?.length > 2 && (
             <p>
               <span
-                className ="frontPage-readMore-op"
+                className="frontPage-readMore-op"
                 onClick={() => setShowMoreOffers(false)}
               >
                 Hide

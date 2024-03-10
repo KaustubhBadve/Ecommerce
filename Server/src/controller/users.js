@@ -53,11 +53,11 @@ exports.userRegistration = async (req, res) => {
       );
     }
 
-    let alreadyExists = await query.getUserByMobileNo(body.mobileNo);
+    let alreadyExists = await query.getUserByEmail(body?.email);
 
     if (alreadyExists) {
       errors.errors.push({
-        msg: `User already exists with mobileNo ${body.mobileNo}`,
+        msg: `User already exists with email ${body?.eamil}`,
       });
       return response.sendResponse(
         constant.response_code.BAD_REQUEST,
@@ -70,17 +70,28 @@ exports.userRegistration = async (req, res) => {
 
     let newUser = {
       name: body?.userName,
+      email:body.email,
       password: body.password,
       mobileNo: body?.mobileNo,
       role: body?.role || "user",
     };
 
-    query.createUser(newUser);
+   await query.createUser(newUser);
+
+    token = await genNewToken(newUser, res);
+   
+    let userDetails = {
+      name: body?.userName,
+      mobileNo: body?.mobileNo,
+      email:body.email,
+      role: body?.role,
+      token,
+    };
 
     return response.sendResponse(
       constant.response_code.SUCCESS,
       "Registration Succesfull",
-      null,
+      userDetails,
       res,
       null
     );
@@ -110,11 +121,11 @@ exports.userLogin = async (req, res) => {
 
     const body = req.body;
 
-    let user = await query.getUserByMobileNo(body?.mobileNo);
+    let user = await query.getUserByEmail(body?.email);
 
     if (!user) {
       errors.errors.push({
-        msg: `User not found with mobileNo ${body?.mobileNo}`,
+        msg: `User not found with email ${body?.email}`,
       });
       return response.sendResponse(
         constant.response_code.BAD_REQUEST,
@@ -180,8 +191,9 @@ exports.userLogin = async (req, res) => {
 // Function to generate JWT token
 const genNewToken = async (payload, res) => {
   try {
+    console.log("payload, process.env.jwtsecret",payload, process.env.jwtsecret);
     var token = jwt.sign(payload, process.env.jwtsecret, {
-      expiresIn: constant.jwt.EXPIRE_SELLER,
+      expiresIn: 432000,
     });
     return token;
   } catch (err) {

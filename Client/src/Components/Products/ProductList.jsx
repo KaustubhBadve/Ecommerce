@@ -1,10 +1,24 @@
 import "./Product.css";
 import { images } from "../imports";
-import { LinuxOutlined, StarTwoTone } from "@ant-design/icons";
+import {
+  DeleteFilled,
+  HeartFilled,
+  LinuxOutlined,
+  QqOutlined,
+  StarTwoTone,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {
+  addToWishList,
+  getDataGroupWise,
+  getProductList,
+  getWishListedItems,
+} from "../../Redux/action";
+import { useDispatch } from "react-redux";
 
-export const ProductList = ({ productList }) => {
+export const ProductList = ({ productList, wishList = 0 }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isMobile, setIsMobile] = useState(false);
@@ -40,20 +54,41 @@ export const ProductList = ({ productList }) => {
         });
         const titleSlicedVal = !isMobile ? 40 : 70;
         const highlightSlicedVal = !isMobile ? 4 : 5;
+        var heartColor = product.isFavourate ? "#ff5857" : "#c8c8c8";
+
+        const handleHeartClick = (id) => {
+          dispatch(addToWishList(id));
+
+          setTimeout(() => {
+            if (wishList == 1) {
+              dispatch(getWishListedItems());
+            } else {
+              dispatch(getProductList());
+            }
+          }, 800);
+        };
         return (
-          <div
-            className="product-list-Individual-main-div"
-            onClick={() => navigate(`/product/${product?.id}`)}
-            key={product?.id}
-          >
+          <div className="product-list-Individual-main-div" key={product?.id}>
             <div
               className={`product-list-Individual-main-div-${
                 product?.category == "tv's" ? "tvs" : "mobile"
               }`}
+              style={{ position: "relative" }}
             >
               <img src={product?.productImages[0]} alt="productImg" />
+              <HeartFilled
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "10px",
+                  color: heartColor,
+                  fontSize: "24px",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleHeartClick(product.id)}
+              />
             </div>
-            <div>
+            <div onClick={() => navigate(`/product/${product?.id}`)}>
               <h2 className="product-title">
                 {product?.title?.slice(0, titleSlicedVal)}
                 {product?.title.length > titleSlicedVal ? "..." : ""}
@@ -83,7 +118,7 @@ export const ProductList = ({ productList }) => {
                   return <li>{highlight}</li>;
                 })}
             </div>
-            <div>
+            <div style={{ position: "relative" }}>
               <div>
                 <span>₹ {discountedPrice?.toLocaleString("en-IN")}</span>
                 <img src={images?.fAsssured} alt="" />
@@ -115,6 +150,19 @@ export const ProductList = ({ productList }) => {
               <div style={{ color: "green" }}>
                 <b>Bank Offer</b>
               </div>
+              {wishList == 1 ? (
+                <DeleteFilled
+                  onClick={() => handleHeartClick(product.id)}
+                  style={{
+                    color: "red",
+                    fontSize: "1.5rem",
+                    position: "absolute",
+                    bottom: 10,
+                    right: 20,
+                    cursor: "pointer",
+                  }}
+                />
+              ) : null}
             </div>
           </div>
         );
@@ -128,10 +176,20 @@ export const ProductList = ({ productList }) => {
         fontWeight: 550,
         color: "#394C6F",
         fontStyle: "italic",
+        textAlign: "center",
       }}
     >
-      <LinuxOutlined style={{textAlign:"center", fontSize:"5rem"}} />
-      No data found
+      {wishList === 1 ? (
+        <>
+          <QqOutlined style={{ fontSize: "5rem" }} />
+          <p>No Items in your Wish List</p>
+        </>
+      ) : (
+        <>
+          <LinuxOutlined style={{ fontSize: "5rem" }} />
+          <p>No data found</p>
+        </>
+      )}
     </div>
   );
 };

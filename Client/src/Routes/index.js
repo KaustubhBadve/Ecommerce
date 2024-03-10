@@ -17,6 +17,7 @@
 
 
 import { Routes, Route } from "react-router-dom";
+import { WishList } from "../Components/WishList/WishList";
 import AllRoutesLayout from "../view/Layout";
 import { Product } from "../view/Product";
 import { ProductListing } from "../view/ProductListing";
@@ -55,6 +56,14 @@ export default function AllRoutes() {
         element={
           <AllRoutesLayout>
             <Product />
+          </AllRoutesLayout>
+        }
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <AllRoutesLayout>
+            <WishList />
           </AllRoutesLayout>
         }
       />

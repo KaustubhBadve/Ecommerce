@@ -4,7 +4,8 @@ module.exports = Object.freeze({
       CATEGORY_MASTER: "categorymaster",
       PRODUCT_MASTER: "productmaster",
       IMAGE_MASTER: "imagemaster",
-      USERS_MASTER:"usersmaster"
+      USERS_MASTER:"usersmaster",
+      WISH_LIST_MASTER:"wishlistmaster",
     },
   },
   response_code: {
