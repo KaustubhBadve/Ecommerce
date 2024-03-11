@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Input, Dropdown, Menu, Button, Modal } from "antd";
+import { Input, Dropdown, Menu, message, Modal } from "antd";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -39,15 +39,14 @@ export const FrontPageNavbar = () => {
   const sidebarRef = useRef(null);
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const { categories, userName } = useSelector((state) => state?.mainReducer);
-
-  const handleDropdownClick = () => {
-    setShowDropdown(!showDropdown);
-  };
+  const { categories, userName, cart } = useSelector(
+    (state) => state?.mainReducer
+  );
 
   const handleLogout = () => {
     setVisible(false);
     dispatch(logout());
+    message.success("You are now logged out")
   };
 
   const confirmLogout = () => {
@@ -162,6 +161,7 @@ export const FrontPageNavbar = () => {
       navigate("/wishlist");
     } else {
       setModalLoginVisible(true);
+      message.warning("Login to continue");
     }
   };
 
@@ -170,6 +170,7 @@ export const FrontPageNavbar = () => {
       navigate("/cartItem");
     } else {
       setModalLoginVisible(true);
+      message.warning("Login to continue");
     }
   };
   return (
@@ -211,7 +212,7 @@ export const FrontPageNavbar = () => {
             </div>
           </Dropdown>
         ) : (
-          <div onClick={() => handleWishList()}>
+          <div onClick={() => setModalLoginVisible(true)}>
             <UserOutlined />
             <p>Hi, Sign In</p>
           </div>
@@ -221,8 +222,23 @@ export const FrontPageNavbar = () => {
         style={{ cursor: "pointer" }}
         onClick={() => handleCartList()}
         className="navbar-top-icon-cart"
+        style={{ position: "relative" }}
       >
         <ShoppingCartOutlined />
+        <span
+          className="cart-count"
+          style={{
+            position: "absolute",
+            top: "-5px",
+            right: "-10px",
+            backgroundColor: cart?.length ? "green" : "#FF5857",
+            borderRadius: "50%",
+            padding: "2px 5px",
+            color: "white",
+          }}
+        >
+          {cart?.length}
+        </span>
       </div>
 
       {isMobile ? (

@@ -92,7 +92,12 @@ p {
 .ant-modal-confirm-body-wrapper{
   padding: 25px;
 }
-
+.cart-count{
+  background-color: green;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 50%;
+}
 
 
 /* media queries for Main Navbar */

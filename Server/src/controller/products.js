@@ -335,7 +335,7 @@ exports.removeFromCartList = async (req, res) => {
         errors
       );
     } else {
-      let productIds = alreadyExists?.productIds;
+      let productIds = alreadyExists?.cartProductIds;
       let updatedProductId = productIds.filter((id) => id != productId);
       await wishlistQuery.updateCartList(
         {

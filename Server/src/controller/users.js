@@ -55,6 +55,8 @@ exports.userRegistration = async (req, res) => {
 
     let alreadyExists = await query.getUserByEmail(body?.email);
 
+    console.log("alreadyExists",alreadyExists);
+
     if (alreadyExists) {
       errors.errors.push({
         msg: `User already exists with email ${body?.eamil}`,
@@ -75,6 +77,8 @@ exports.userRegistration = async (req, res) => {
       mobileNo: body?.mobileNo,
       role: body?.role || "user",
     };
+
+    console.log("newUser",newUser);
 
    await query.createUser(newUser);
 

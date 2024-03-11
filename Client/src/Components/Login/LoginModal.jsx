@@ -14,9 +14,6 @@ const LoginModal = ({ visible, onCancell }) => {
   const [password, setPassword] = useState("");
   const [modalSignInVisible, setModalSignInVisible] = useState(false);
   const dispatch = useDispatch();
-  // const handleOk = () => {
-  //   onCancell();
-  // };
 
   const handleOk = async () => {
     try {
@@ -26,6 +23,7 @@ const LoginModal = ({ visible, onCancell }) => {
       }
       let resp = await axios.post("http://localhost:3033/api/auth/login", values);
       message.success("Login Successful");
+      message.success(`Hey ${resp?.data?.data?.name}`);
       Cookies.set("currentUser", JSON.stringify(resp?.data?.data));
       dispatch(userSignup(resp?.data?.data))
       onCancell()

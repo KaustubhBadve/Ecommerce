@@ -20,6 +20,7 @@ const SignInModal = ({ visible, onnCancel }) => {
     try {
       let resp = await axios.post("http://localhost:3033/api/auth/register", values);
       message.success("Registration Successful");
+      message.success(`Hi ${resp?.data?.data.name}`)
       Cookies.set("currentUser", JSON.stringify(resp?.data?.data));
       dispatch(userSignup(resp?.data?.data))
       onnCancel()

@@ -4,14 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import { HeartFilled, StarTwoTone } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToWishList, getDataGroupWise } from "../../Redux/action";
-
+import LoginModal from "../Login/LoginModal";
+import { message } from "antd";
 export const FrontPageProductList = ({ data }) => {
   const navigate = useNavigate();
   const [showMoreOffers, setShowMoreOffers] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
+  const { userName, cart } = useSelector((state) => state?.mainReducer);
 
   useEffect(() => {
     const handleResize = () => {
@@ -58,8 +62,12 @@ export const FrontPageProductList = ({ data }) => {
                       ? "#ff5857"
                       : "#c8c8c8";
                     const handleHeartClick = (id) => {
-                      dispatch(addToWishList(id));
-
+                      if (!userName) {
+                        setModalLoginVisible(true);
+                        message.warning("Login to continue");
+                      } else {
+                        dispatch(addToWishList(id));
+                      }
                       setTimeout(() => {
                         dispatch(getDataGroupWise());
                       }, 1000);
@@ -203,6 +211,11 @@ export const FrontPageProductList = ({ data }) => {
           )}
         </div>
       ))}
+
+      <LoginModal
+        visible={modalLoginVisible}
+        onCancell={() => setModalLoginVisible(false)}
+      />
     </div>
   );
 };
