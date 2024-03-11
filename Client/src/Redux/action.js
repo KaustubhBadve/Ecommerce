@@ -220,8 +220,6 @@ export const reomveCartItems = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
 
-    console.log("userToken", userToken);
-
     await fetch(`http://localhost:3033/api/removefromcart/${id}`, {
       method: "post",
       headers: {
@@ -230,7 +228,6 @@ export const reomveCartItems = (id) => async (dispatch) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data?.data);
         dispatch({ type: REMOVE_FROM_CART, payload: data?.data });
       });
   } catch (error) {

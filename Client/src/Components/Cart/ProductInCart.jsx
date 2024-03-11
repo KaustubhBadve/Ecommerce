@@ -2,31 +2,44 @@ import "./Cart.css";
 import { images } from "../imports";
 import { QqOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { Button, InputNumber } from "antd";
+import { Button, InputNumber, message } from "antd";
 import { useDispatch } from "react-redux";
 import { reomveCartItems } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 
-export const ProductInCart = ({ productList = [] }) => {
+export const ProductInCart = ({ productList }) => {
   const [isMobile, setIsMobile] = useState(false);
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleIncrease = () => {
-    if (count < 5) {
-      setCount(count + 1);
-    }
+  const [counts, setCounts] = useState({});
+
+  useEffect(() => {
+    const initialCounts = {};
+    productList.forEach((product) => {
+      initialCounts[product.id] = 1;
+    });
+    setCounts(initialCounts);
+  }, [productList]);
+
+  const handleIncrease = (productId) => {
+    setCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: Math.min(prevCounts[productId] + 1, 5),
+    }));
   };
 
-  const handleDecrease = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+  const handleDecrease = (productId) => {
+    setCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: Math.max(prevCounts[productId] - 1, 1),
+    }));
   };
 
   const handleRemoveItem = (id) => {
     dispatch(reomveCartItems(id));
+    message.warning("Item removed from cart");
   };
 
   useEffect(() => {
@@ -44,9 +57,10 @@ export const ProductInCart = ({ productList = [] }) => {
 
   const { totalPrice = 0, totalDiscount = 0 } = (productList || []).reduce(
     (totals, product) => {
-      let originalPrice = product.price * count;
+      let originalPrice = product.price * counts[product.id];
       let discountedPrice =
-        Math.round((product.price * (100 - product.offer)) / 100) * count;
+        Math.round((product.price * (100 - product.offer)) / 100) *
+        counts[product.id];
       return {
         totalPrice: totals.totalPrice + originalPrice,
         totalDiscount: totals.totalDiscount + (originalPrice - discountedPrice),
@@ -117,14 +131,19 @@ export const ProductInCart = ({ productList = [] }) => {
                   <InputNumber
                     min={1}
                     max={5}
-                    value={count}
+                    value={counts[product.id]}
                     controls={false}
-                    onChange={(value) => setCount(value)}
+                    onChange={(value) =>
+                      setCounts((prevCounts) => ({
+                        ...prevCounts,
+                        [product.id]: value,
+                      }))
+                    }
                     addonBefore={
                       <Button
                         size="small"
                         type="dashed"
-                        onClick={handleIncrease}
+                        onClick={() => handleIncrease(product.id)}
                       >
                         +
                       </Button>
@@ -133,7 +152,7 @@ export const ProductInCart = ({ productList = [] }) => {
                       <Button
                         size="small"
                         type="dashed"
-                        onClick={handleDecrease}
+                        onClick={() => handleDecrease(product.id)}
                       >
                         -
                       </Button>

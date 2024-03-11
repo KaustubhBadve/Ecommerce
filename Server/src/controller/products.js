@@ -332,7 +332,7 @@ exports.removeFromCartList = async (req, res) => {
 
     if (!alreadyExists) {
       errors.errors.push({
-        msg: `Cart Item empty`,
+        msg: `Item not found`,
       });
       return response.sendResponse(
         constants.response_code.BAD_REQUEST,
@@ -351,10 +351,17 @@ exports.removeFromCartList = async (req, res) => {
         { userId }
       );
     }
+
+    let items = await db.sequelize.query(`call fetchCartItems(:userId)`, {
+      replacements: {
+        userId,
+      },
+    });
+
     return response.sendResponse(
       constants.response_code.SUCCESS,
       null,
-      null,
+      items[0]?.item || [],
       res,
       null
     );
