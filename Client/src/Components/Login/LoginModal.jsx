@@ -27,8 +27,8 @@ const LoginModal = ({ visible, onCancell }) => {
       );
       message.success("Login Successful");
       message.success(`Hey ${resp?.data?.data?.name}`);
-      Cookies.set("currentUser", JSON.stringify(resp?.data?.data));
       dispatch(userSignup(resp?.data?.data));
+      Cookies.set("currentUser", JSON.stringify(resp?.data?.data));
       onCancell();
       return;
     } catch (error) {

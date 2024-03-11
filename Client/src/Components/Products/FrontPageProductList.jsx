@@ -14,7 +14,7 @@ export const FrontPageProductList = ({ data }) => {
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);
-  const { userName, cart } = useSelector((state) => state?.mainReducer);
+  const { userName } = useSelector((state) => state?.mainReducer);
 
   useEffect(() => {
     const handleResize = () => {

@@ -4,7 +4,6 @@ import {Reducer} from './reducer'
 
 const rootReducer = combineReducers({
   mainReducer: Reducer,
-//   users: usersReducer
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)

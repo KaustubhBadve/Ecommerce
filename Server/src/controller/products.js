@@ -303,10 +303,17 @@ exports.addToCartList = async (req, res) => {
         userId,
       });
     }
+
+    let items = await db.sequelize.query(`call fetchCartItems(:userId)`, {
+      replacements: {
+        userId,
+      },
+    });
+
     return response.sendResponse(
       constants.response_code.SUCCESS,
       null,
-      null,
+      items[0].item,
       res,
       null
     );

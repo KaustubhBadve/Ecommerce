@@ -186,7 +186,7 @@ export const addToCart = (id) => async (dispatch) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("eeeee",data.data);
         dispatch({ type: ADD_TO_CART ,payload:data?.data});
       });
   } catch (error) {
