@@ -11,7 +11,6 @@ import { message } from "antd";
 export const FrontPageProductList = ({ data }) => {
   const navigate = useNavigate();
   const [showMoreOffers, setShowMoreOffers] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(false);

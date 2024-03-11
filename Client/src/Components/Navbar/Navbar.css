@@ -117,10 +117,10 @@ p {
     display: none;
   }
   .navbar-top-icon,.navbar-top-icon-WishList{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
   }
-  .navbar-top-icon-WishList > p, .navbar-top-icon>p,.navbar-top-location {
+  .navbar-top-icon-WishList > p, .navbar-top-icon p,.navbar-top-location {
     display: none;
   }
   .front-top-navbar div:nth-child(1) > img {

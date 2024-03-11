@@ -558,4 +558,10 @@ float: right;
     .product-list-NoData{
       width: 100%;
     }
+    .deleteIcon{
+      font-size: 3rem;
+      width: 15%;
+      height: 6%;
+      cursor: pointer;
+    }
 }

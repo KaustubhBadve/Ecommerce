@@ -208,7 +208,7 @@ export const FrontPageNavbar = () => {
           >
             <div style={{ cursor: "pointer" }}>
               <UserOutlined style={{ marginRight: "8px" }} />
-              {userName}
+             <p>{userName}</p> 
             </div>
           </Dropdown>
         ) : (

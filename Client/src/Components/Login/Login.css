@@ -1,40 +1,60 @@
-.modal_for_Login{
-    display: flex;
-    height: 65vh;
-    width: 43vw;
+.modal_for_Login {
+  display: flex;
+  height: 65vh;
+  width: 43vw;
 }
-.modal_for_Login_div1{
-    width: 40%;
-    background: linear-gradient(to right, #41567b, #182336);
-    padding: 40px 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    color: white;
+.modal_for_Login_div1 {
+  width: 40%;
+  background: linear-gradient(to right, #41567b, #182336);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  color: white;
 }
-.modal_for_Login_div2{
-    width: 60%;
-    background: linear-gradient(to right, #f6eef8, #f2fcfa);
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid yellowgreen;
+.modal_for_Login_div2 {
+  width: 60%;
+  background: linear-gradient(to right, #f6eef8, #f2fcfa);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
-.modal_for_Login_div2>p{
-    color: blue;
-    cursor: pointer;
+.modal_for_Login_div2 > p {
+  color: blue;
+  cursor: pointer;
 }
-.modal_for_Login_div1>img{
-    width: 90%;
+.modal_for_Login_div1 > img {
+  width: 90%;
 }
 
 .ant-modal .ant-modal-content {
-    padding: 0px 0px;
+  padding: 0px 0px;
 }
-.ant-form{
+.ant-form {
+  width: 80%;
+  background: linear-gradient(to right, #f6eef8, #f2fcfa);
+  padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal_for_Login {
+    display: flex;
+    min-height: 50vh;
+    height: auto;
+    width: 100vw;
+  }
+  .modal_for_Login_div1 {
+    width: 20%;
+    padding: 30px 10px;
+    font-size: 0.7rem;
+  }
+  .modal_for_Login_div2 {
     width: 80%;
-    background: linear-gradient(to right, #f6eef8, #f2fcfa);
-    padding: 15px;
+    padding: 25px 20px;
+  }
+  .ant-input {
+    height: 40px !important;
+  }
 }

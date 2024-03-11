@@ -15,7 +15,6 @@ export const Cart=()=>{
         <div>
             <h3>My Cart ({cart?.length || 0})</h3>
             <div className="filterComponent" style={{display:"flex"}}>
-            {/* <SideBar/> */}
             <ProductInCart productList={cart} wishList={1}/>
             </div>
         </div>

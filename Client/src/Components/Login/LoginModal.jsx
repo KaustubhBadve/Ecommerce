@@ -7,7 +7,7 @@ import SignInModal from "./Signup";
 import { userSignup } from "../../Redux/action";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import axios from 'axios';
+import axios from "axios";
 
 const LoginModal = ({ visible, onCancell }) => {
   const [email, setEmail] = useState("");
@@ -17,24 +17,33 @@ const LoginModal = ({ visible, onCancell }) => {
 
   const handleOk = async () => {
     try {
-      let values={
-        email:email,
-        password:password
-      }
-      let resp = await axios.post("http://localhost:3033/api/auth/login", values);
+      let values = {
+        email: email,
+        password: password,
+      };
+      let resp = await axios.post(
+        "http://localhost:3033/api/auth/login",
+        values
+      );
       message.success("Login Successful");
       message.success(`Hey ${resp?.data?.data?.name}`);
       Cookies.set("currentUser", JSON.stringify(resp?.data?.data));
-      dispatch(userSignup(resp?.data?.data))
-      onCancell()
-      return
+      dispatch(userSignup(resp?.data?.data));
+      onCancell();
+      return;
     } catch (error) {
-      if (error.response && error.response.data && Array.isArray(error.response.data.error)) {
+      if (
+        error.response &&
+        error.response.data &&
+        Array.isArray(error.response.data.error)
+      ) {
         error.response.data.error.forEach((errorMessage) => {
           message.error(errorMessage);
         });
       } else {
-        message.error("An error occurred during registration. Please try again later.");
+        message.error(
+          "An error occurred during registration. Please try again later."
+        );
       }
     }
   };
@@ -47,7 +56,6 @@ const LoginModal = ({ visible, onCancell }) => {
   return (
     <>
       <Modal
-        title=""
         centered
         visible={visible}
         onCancel={onCancell}
@@ -63,7 +71,7 @@ const LoginModal = ({ visible, onCancell }) => {
           <div className="modal_for_Login_div2">
             <div style={{ height: "50%" }}>
               <Input
-                placeholder="Enter Email/Mobile No"
+                placeholder="Enter Email"
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
                   height: "20%",

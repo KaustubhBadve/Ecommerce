@@ -152,6 +152,7 @@ export const ProductList = ({ productList, wishList = 0 }) => {
               {wishList == 1 ? (
                 <DeleteFilled
                   onClick={() => handleHeartClick(product.id)}
+                  className="deleteIcon"
                   style={{
                     color: "red",
                     fontSize: "1.5rem",
