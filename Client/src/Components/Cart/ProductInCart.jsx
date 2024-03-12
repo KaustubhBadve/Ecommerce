@@ -4,12 +4,13 @@ import { QqOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { Button, InputNumber, message } from "antd";
 import { useDispatch } from "react-redux";
-import { reomveCartItems } from "../../Redux/action";
+import { addTotals, reomveCartItems } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
+import { PricingDetails } from "./PricingDetails";
 
 export const ProductInCart = ({ productList }) => {
   const [isMobile, setIsMobile] = useState(false);
-  // const [count, setCount] = useState(1);
+  const [isCart, setCart] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -69,10 +70,17 @@ export const ProductInCart = ({ productList }) => {
     { totalPrice: 0, totalDiscount: 0 }
   );
 
+  useEffect(()=>{
+    dispatch(addTotals({totalPrice, totalDiscount}));
+    console.log("totalPrice, totalDiscount",totalPrice, totalDiscount);
+  },[totalPrice,totalDiscount])
+
+
   return productList?.length ? (
     <div className="product-list-cart">
       <div>
-        <div>
+        {
+          isCart && <div>
           {productList?.map((product) => {
             let discountedPrice = Math.round(
               (product?.price * (100 - product?.offer)) / 100
@@ -82,7 +90,7 @@ export const ProductInCart = ({ productList }) => {
             const deliveryDate = new Date(
               currentDate.getTime() + randomDays * 24 * 60 * 60 * 1000
             );
-            const formattedDate = deliveryDate.toLocaleDateString("en-US", {
+            const formattedDate = deliveryDate?.toLocaleDateString("en-US", {
               day: "numeric",
               month: "long",
             });
@@ -171,56 +179,12 @@ export const ProductInCart = ({ productList }) => {
             );
           })}
         </div>
-      </div>
-      <div className="cart-pricing-section">
-        <h2>PRICE DETAILS</h2>
-        <hr />
-        <div>
-          <div>
-            <p>Price ({productList.length} Items)</p>
-            <p>₹ {totalPrice.toLocaleString("en-IN")}</p>
-          </div>
-          <div>
-            <p>Discount</p>
-            <p style={{ color: "green" }}>
-              - ₹ {totalDiscount.toLocaleString("en-IN")}
-            </p>
-          </div>
-          <div>
-            <p>Delivery Charges</p>
-            <p>
-              <span style={{ textDecoration: "line-through" }}>₹ 40 </span>{" "}
-              <span style={{ color: "green" }}>Free</span>
-            </p>
-          </div>
-          <div>
-            <p>Secured Packaging Fee</p>
-            <p>₹ 99</p>
-          </div>
+        }
+        
 
-          <hr />
-          <div>
-            <p>Total Amount</p>
-            <p>₹{(totalPrice - totalDiscount + 99).toLocaleString("en-IN")}</p>
-          </div>
-        </div>
-        <p style={{ color: "green", fontWeight: "550", marginTop: "30px" }}>
-          You will save ₹{(totalDiscount - 40).toLocaleString("en-IN")} on this
-          order
-        </p>
-        <Button
-          style={{
-            backgroundColor: "#FB641B",
-            color: "white",
-            width: "60%",
-            marginTop: "30px",
-          }}
-          type="primary"
-          size={"large"}
-        >
-          PLACE ORDER
-        </Button>
+        
       </div>
+      <PricingDetails />
     </div>
   ) : (
     <div

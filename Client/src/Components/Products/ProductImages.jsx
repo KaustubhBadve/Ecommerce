@@ -5,18 +5,19 @@ import {
 } from "@ant-design/icons";
 import { Button, Image, message } from "antd";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addToCart, addToWishList, getProduct } from "../../Redux/action";
 import LoginModal from "../Login/LoginModal";
 
 export const ProductImages = ({ images, category, product }) => {
   const [selectedImage, setSelectedImage] = useState(
-    images?.length > 0 ? images[2] : ""
+    images?.length > 0 ? images[0] : ""
   );
-  const [heartColor, setHeartColor] = useState(
-    product?.isFavourate ? "#ff5857" : "#c8c8c8"
-  );
-  const [modalVisible, setModalVisible] = useState(false);
+  const navigate = useNavigate();
+  const heartColor = product?.isFavourate ? "#ff5857" : "#c8c8c8"
+  
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const dispatch = useDispatch();
   const { userName } = useSelector((state) => state?.mainReducer);
@@ -26,11 +27,6 @@ export const ProductImages = ({ images, category, product }) => {
 
   const handleHeartClick = () => {
     dispatch(addToWishList(product?.id));
-
-    setTimeout(() => {
-      dispatch(getProduct(product?.id));
-      setHeartColor(product?.isFavourate ? "#ff5857" : "#c8c8c8");
-    }, 800);
   };
 
   const handleAddToCart = () => {
@@ -41,6 +37,14 @@ export const ProductImages = ({ images, category, product }) => {
       message.success("Product added to cart");
     }
   };
+
+  const handleBuyNow = ()=>{
+    if (!userName) {
+      setModalLoginVisible(true);
+    } else {
+      navigate("/cartItem")
+    }
+  }
   return (
     <div className="product-individual-images-main">
       <div className="product-individual-images-main2">
@@ -85,6 +89,7 @@ export const ProductImages = ({ images, category, product }) => {
           style={{ backgroundColor: "#FB641B", color: "white" }}
           type="primary"
           size={"large"}
+          onClick={()=>handleBuyNow()}
         >
           <FireOutlined /> BUY NOW
         </Button>

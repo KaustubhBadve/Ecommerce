@@ -125,6 +125,99 @@
   font-size: 1rem;
 }
 
+/* Address */
+
+.address-cart {
+  display: flex;
+  align-content: center;
+  width: 90%;
+  justify-content: space-evenly;
+}
+
+.address-cart > div:nth-child(1) {
+  width: 60%;
+}
+.address-form {
+  width: 100%;
+}
+.address-form > div:nth-child(1),
+.address-form > div:nth-child(2),
+.address-form > div:nth-child(5) {
+  display: flex;
+  justify-content: space-between;
+}
+.address-cart > div:nth-child(1)  h2 {
+  color: gray;
+}
+.ant-form-item .ant-form-item-label{
+  font-weight: 500;
+  margin: 0px 10px;
+}
+
+.address-cart > div:nth-child(2) {
+  width: 25%;
+  padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  max-height: 50vh;
+  border-radius: 10px;
+}
+
+.address-Box{
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  height: 30vh;
+  text-align: left;
+  padding: 10px;
+}
+.address-Box-child{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.address-Box .ant-btn{
+width: 20%;
+
+}
+.address-Box>div:nth-child(4){
+  display: flex;
+  justify-content: end;
+}
+.payment-options{
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  min-height: 30vh;
+  text-align: left;
+  padding: 10px;
+  margin-top: 30px;
+}
+.payment-options >  h2 {
+  color: gray;
+}
+.payment-options > div:nth-child(3){
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+.payment-options > div:nth-child(3)>p{
+  border-bottom: 1px solid rgb(219, 212, 212);
+  padding: 10px;
+}
+.payment-options > div:nth-child(3)>p:nth-child(1),.payment-options > div:nth-child(3)>p:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.payment-options > div:nth-child(3)>p:nth-child(1) img,.payment-options > div:nth-child(3)>p:nth-child(2) img {
+  height: 3vh;
+  width: 3vw;
+  border-radius: 10px;
+}
+.payment-options > div:nth-child(3)>p:hover{
+  background-color: rgb(231, 241, 241);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .product-list-cart {
     display: flex;

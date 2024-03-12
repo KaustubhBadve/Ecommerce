@@ -17,7 +17,9 @@
 
 
 import { Routes, Route } from "react-router-dom";
+import { Address } from "../Components/Cart/Address";
 import { Cart } from "../Components/Cart/Cart";
+import { OrderConfirmation } from "../Components/OrderConfirmation/OrderConfirmation";
 import { WishList } from "../Components/WishList/WishList";
 import AllRoutesLayout from "../view/Layout";
 import { Product } from "../view/Product";
@@ -73,6 +75,22 @@ export default function AllRoutes() {
         element={
           <AllRoutesLayout>
             <Cart />
+          </AllRoutesLayout>
+        }
+      />
+       <Route
+        path="/address"
+        element={
+          <AllRoutesLayout>
+            <Address />
+          </AllRoutesLayout>
+        }
+      />
+      <Route
+        path="/orderconfirm"
+        element={
+          <AllRoutesLayout>
+            <OrderConfirmation />
           </AllRoutesLayout>
         }
       />

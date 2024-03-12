@@ -57,14 +57,6 @@ export const ProductList = ({ productList, wishList = 0 }) => {
 
         const handleHeartClick = (id) => {
           dispatch(addToWishList(id));
-
-          setTimeout(() => {
-            if (wishList == 1) {
-              dispatch(getWishListedItems());
-            } else {
-              dispatch(getProductList());
-            }
-          }, 800);
         };
         return (
           <div className="product-list-Individual-main-div" key={product?.id}>

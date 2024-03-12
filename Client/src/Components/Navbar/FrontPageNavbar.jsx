@@ -29,7 +29,6 @@ export const FrontPageNavbar = () => {
   const navigate = useNavigate();
   const [location, setLocation] = useState(null);
   const [pincode, setPincode] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [region, setRegion] = useState(null);
   const [city, setCity] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);

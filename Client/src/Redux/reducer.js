@@ -1,5 +1,7 @@
 import {
+  ADD_TOTALS,
   ADD_TO_CART,
+  ADD_TO_WISHLIST,
   FETCH_CATEGORIES,
   FETCH_DATA_CATEGORY_WISE,
   FETCH_FROM_CART,
@@ -30,6 +32,8 @@ const InitialVal = {
   token: userToken,
   wishListItem: [],
   cart: [],
+  cartTotalPrice: 0,
+  cartTotalDiscount: 0,
 };
 
 export const Reducer = (state = InitialVal, { type, payload }) => {
@@ -86,6 +90,32 @@ export const Reducer = (state = InitialVal, { type, payload }) => {
         wishListItem: payload,
       };
     }
+    case ADD_TO_WISHLIST: {
+      const id = payload;
+      const updatedOrganisedProducts = toggleFavouriteForOrganisedProducts(
+        state.organisedProducts,
+        id
+      );
+      const products = toggleFavouriteForProduct(state.products, id);
+
+      const product = state.product;
+
+      if (product.hasOwnProperty("isFavourate")) {
+        product.isFavourate = !product.isFavourate;
+      }
+
+      const wishList =
+        state?.wishListItem && state?.wishListItem?.length > 0
+          ? state?.wishListItem?.filter((item) => item.id !== id)
+          : [];
+      return {
+        ...state,
+        organisedProducts: updatedOrganisedProducts,
+        products,
+        product: { ...product },
+        wishListItem: wishList,
+      };
+    }
     case ADD_TO_CART: {
       return {
         ...state,
@@ -104,8 +134,39 @@ export const Reducer = (state = InitialVal, { type, payload }) => {
         cart: payload,
       };
     }
+    case ADD_TOTALS: {
+      console.log("payloadpayload",payload);
+      return {
+        ...state,
+        cartTotalPrice:payload?.totalPrice,
+        cartTotalDiscount:payload?.totalDiscount
+      };
+    }
     default:
       return state;
       break;
   }
+};
+
+const toggleFavouriteForOrganisedProducts = (data, id) => {
+  for (const category in data) {
+    for (const brand in data[category]) {
+      const item = data[category][brand].find((product) => product.id === id);
+      if (item) {
+        item.isFavourate = !item.isFavourate;
+        break;
+      }
+    }
+  }
+  return data;
+};
+
+const toggleFavouriteForProduct = (products, id) => {
+  for (const product of products) {
+    if (product.id === id) {
+      product.isFavourate = !product.isFavourate;
+      break;
+    }
+  }
+  return products;
 };

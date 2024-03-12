@@ -57,7 +57,7 @@ export const FrontPageProductList = ({ data }) => {
                     );
                     let ratingColor =
                       product?.avgRating > 3 ? "green" : "#ff5857";
-                    var heartColor = product.isFavourate
+                    var heartColor = product?.isFavourate
                       ? "#ff5857"
                       : "#c8c8c8";
                     const handleHeartClick = (id) => {
@@ -67,9 +67,6 @@ export const FrontPageProductList = ({ data }) => {
                       } else {
                         dispatch(addToWishList(id));
                       }
-                      setTimeout(() => {
-                        dispatch(getDataGroupWise());
-                      }, 1000);
                     };
                     return (
                       <SwiperSlide key={index}>
@@ -93,14 +90,21 @@ export const FrontPageProductList = ({ data }) => {
                             }}
                             onClick={() => handleHeartClick(product.id)}
                           />
-                          <h4>{product?.title?.slice(0, 30)}...</h4>
+                          <h4
+                          style={{cursor:"pointer"}}
+                            onClick={() => navigate(`/product/${product?.id}`)}
+                          >
+                            {product?.title?.slice(0, 30)}...
+                          </h4>
                           <div
                             onClick={() => navigate(`/product/${product?.id}`)}
                             className="product-slider-front-bottom-div"
                           >
                             <div>
                               <b>
-                                ₹ {discountedPrice?.toLocaleString("en-IN")}
+                                <i>
+                                  ₹ {discountedPrice?.toLocaleString("en-IN")}
+                                </i>
                               </b>
                               <p>{product?.offer}% Off</p>
                             </div>

@@ -1,4 +1,5 @@
 import {
+  ADD_TOTALS,
   ADD_TO_CART,
   ADD_TO_WISHLIST,
   FETCH_CATEGORIES,
@@ -145,7 +146,7 @@ export const addToWishList = (id) => async (dispatch) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch({ type: ADD_TO_WISHLIST });
+        dispatch({ type: ADD_TO_WISHLIST,payload:id });
       });
   } catch (error) {
     console.log(error);
@@ -234,3 +235,12 @@ export const reomveCartItems = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const addTotals=(data)=>(dispatch)=>{
+  try {
+    console.log("datadata",data);
+    dispatch({type:ADD_TOTALS,payload:data})
+  } catch (error) {
+    console.log(error);
+  }
+}

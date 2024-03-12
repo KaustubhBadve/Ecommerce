@@ -19,4 +19,6 @@ export const images = {
   fAsssured: require("../images/fAsssured.png"),
   locationn: require("../images/location.png"),
   categoryNavbar: require("../images/categoryNavbar.png"),
+  Paytym: require("../images/Paytym.webp"),
+  UPI: require("../images/UPI.gif"),
 };
