@@ -64,7 +64,7 @@ export const PaymentOptions = () => {
   return (
     <div className="payment-options">
       <h2>PAYMENT OPTIONS </h2>
-      <hr />
+      <br />
       <div>
         <p onClick={countDown}>
           <img src={images.Paytym} alt="" />

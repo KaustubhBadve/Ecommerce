@@ -335,18 +335,13 @@ float: right;
   margin: 20px;
 }
 .frontPage-readMore-op{
-  width: 20%;
-  color: #040724;
   cursor: pointer;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 550;
-  background: linear-gradient(to right, #a8c2ee, #70a0f2);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center!important;
-  align-items: center;
-  margin-top: 40px;
+  text-align: left;
+  color: #222F47;
+  font-size: 1rem;
+  padding-left: 20px;
+  font-style: italic;
+  font-weight:550;
 }
 
 @media screen and (max-width: 768px) {

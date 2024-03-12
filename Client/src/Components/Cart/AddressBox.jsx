@@ -35,7 +35,6 @@ export const AddressBox = ({
   return (
     <div className="address-Box">
       <h2>ADDRESS</h2>
-      <hr />
       <div className="address-Box-child">
         <h4>{name}</h4>
         <p>{email}</p>

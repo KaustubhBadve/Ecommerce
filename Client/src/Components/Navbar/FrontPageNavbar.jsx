@@ -45,7 +45,7 @@ export const FrontPageNavbar = () => {
   const handleLogout = () => {
     setVisible(false);
     dispatch(logout());
-    message.success("You are now logged out")
+    message.success("You are now logged out");
   };
 
   const confirmLogout = () => {
@@ -122,9 +122,15 @@ export const FrontPageNavbar = () => {
   }, []);
 
   const navigateToProducts = (val) => {
-    dispatch(getProductList(val));
-    setShowMenu(!showMenu);
-    navigate(`/productlist?category=${val}`);
+    if (val == "home") {
+      navigate(`/`);
+    } else if (val == "logout") {
+      dispatch(logout());
+      message.success("You are now logged out");
+    } else {
+      setShowMenu(!showMenu);
+      navigate(`/productlist?category=${val}`);
+    }
   };
 
   const toggleMenu = () => {
@@ -207,7 +213,7 @@ export const FrontPageNavbar = () => {
           >
             <div style={{ cursor: "pointer" }}>
               <UserOutlined style={{ marginRight: "8px" }} />
-             <p>{userName}</p> 
+              <p>{userName}</p>
             </div>
           </Dropdown>
         ) : (
@@ -218,10 +224,9 @@ export const FrontPageNavbar = () => {
         )}
       </div>
       <div
-        style={{ cursor: "pointer" }}
         onClick={() => handleCartList()}
         className="navbar-top-icon-cart"
-        style={{ position: "relative" }}
+        style={{ position: "relative",cursor: "pointer" }}
       >
         <ShoppingCartOutlined />
         <span
@@ -247,7 +252,9 @@ export const FrontPageNavbar = () => {
             onClick={toggleMenu}
           />
           <div className={`nav-elements-${showMenu}`}>
+           {userName && <h2>Hi, {userName}</h2>}
             <ul>
+              <li onClick={() => navigateToProducts("home")}>Home</li>
               {categories?.map((item) => (
                 <li
                   key={item.categoryName}
@@ -258,6 +265,7 @@ export const FrontPageNavbar = () => {
                   {item.categoryName}
                 </li>
               ))}
+              <li onClick={() => navigateToProducts("logout")}>Logout</li>
             </ul>
             <div>
               <img

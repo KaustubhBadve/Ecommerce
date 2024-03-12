@@ -1,13 +1,20 @@
 import { Button } from "antd";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "../Login/LoginModal";
 
-export const PricingDetails = () => {
-    const {cartTotalPrice,cartTotalDiscount,cart}=useSelector((state)=>state.mainReducer)
+export const PricingDetails = ({btn}) => {
+  const [modalLoginVisible, setModalLoginVisible] = useState(false);
+    const {cartTotalPrice,cartTotalDiscount,cart,userName}=useSelector((state)=>state.mainReducer)
     const navigate=useNavigate()
 
     const handlePlaceOrder =()=>{
+      if (userName) {
         navigate("/address")
+      } else {
+        setModalLoginVisible(true);
+      }
     }
   return (
     <div className="cart-pricing-section">
@@ -42,6 +49,9 @@ export const PricingDetails = () => {
           <p>₹{(cartTotalPrice - cartTotalDiscount + 99)?.toLocaleString("en-IN")}</p>
         </div>
       </div>
+      
+      {btn ==1 &&
+      <>
       <p style={{ color: "green", fontWeight: "550", marginTop: "30px" }}>
         You will save ₹{(cartTotalDiscount - 40)?.toLocaleString("en-IN")} on this
         order
@@ -59,6 +69,12 @@ export const PricingDetails = () => {
       >
         PLACE ORDER
       </Button>
+      </>
+      }
+        <LoginModal
+        visible={modalLoginVisible}
+        onCancell={() => setModalLoginVisible(false)}
+      />
     </div>
   );
 };

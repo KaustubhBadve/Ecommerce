@@ -184,7 +184,7 @@ export const ProductInCart = ({ productList }) => {
 
         
       </div>
-      <PricingDetails />
+      <PricingDetails btn={1}/>
     </div>
   ) : (
     <div

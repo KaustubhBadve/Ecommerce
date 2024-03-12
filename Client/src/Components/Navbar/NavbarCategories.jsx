@@ -50,24 +50,24 @@ export const NavbarCategories = () => {
     navigate(`/productlist?category=${val}`);
   };
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
   return (
     <>
-        <div className="navabr-categories">
-          {categories?.map((item) => (
-            <div
-              key={item.categoryName}
-              onClick={() =>
-                navigateToProducts(item.categoryName.toLowerCase())
-              }
-            >
-              {item.categoryName}
-            </div>
-          ))}
+    <div className="navabr-categories">
+      <div
+        key="home"
+        onClick={() => navigateToProducts("home")}
+      >
+        Home
+      </div>
+      {categories?.map((item) => (
+        <div
+          key={item.categoryName}
+          onClick={() => navigateToProducts(item.categoryName.toLowerCase())}
+        >
+          {item.categoryName}
         </div>
-    </>
+      ))}
+    </div>
+  </>
   );
 };

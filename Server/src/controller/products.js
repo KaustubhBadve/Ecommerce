@@ -328,6 +328,22 @@ exports.removeFromCartList = async (req, res) => {
     const { productId } = req.params;
     let userId = token?.id;
 
+    if(productId == 0){
+      await wishlistQuery.updateCartList(
+        {
+          cartProductIds: [],
+        },
+        { userId }
+      );
+      return response.sendResponse(
+        constants.response_code.SUCCESS,
+        null,
+        [],
+        res,
+        null
+      );
+    }
+
     const alreadyExists = await wishlistQuery.findCartItem(userId);
 
     if (!alreadyExists) {

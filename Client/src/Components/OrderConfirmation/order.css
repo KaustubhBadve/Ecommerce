@@ -1,24 +1,184 @@
+.orderConfirmMain{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .order-comfirmation{
-    width: 95%;
-    border: 1px solid red;
+    width: 80%;
     min-height: 50vh;
     text-align: left;
     padding: 10px 20px;
+    color: linear-gradient(to right, #41567b, #182336);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.order-comfirmation>p{
+    font-size: 18px;
+    line-height: 30px;
+    font-style: italic;
+    font-weight: 500;
+    color: #41567b;
 }
 .order-comfirmation-child{
     display: flex;
+    gap: 20px;
 }
 
 .order-comfirmation-child1 {
-    width: 60%;
-    border: 1px solid red;
+    width: 50%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+  .order-comfirmation-child1 .ant-btn{
+    width: 40%;
+    height: 2.3rem;
+    background-color: #334461;
+    margin: 30px;
+  }
+
+.gridBox{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto);
-    gap: 10px; 
+    gap: 25px; 
+}
+.gridBox>div>p:nth-child(1){
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(68, 65, 65);
+    margin-top: 10px;
+}
+.gridBox>div>p:nth-child(2){
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 550;
+    font-style: italic;
+}
+.order-comfirmation-child2{
+    width: 45%;
+}
+
+.product-list-orderConfirm-tvs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.product-list-orderConfirm-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .product-list-orderConfirm {
+    display: flex;
+    min-height: 100px;
+    max-height: 160px;
+    width: 100%;
+    gap: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(248, 249, 250);
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .product-list-orderConfirm > div {
+    flex: 1;
+    padding: 20px 10px;
+  }
+  
+  .product-list-orderConfirm-mobile {
+    flex: 1.2 !important;
+    padding: 10px;
+  }
+  .product-list-orderConfirm-tvs {
+    flex: 1.2 !important;
+    padding: 10px;
+  }
+  .product-list-orderConfirm > div:nth-child(2) {
+    flex: 2.5;
+    text-align: left;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  .product-list-orderConfirm > div:nth-child(1) img {
+    width: 60%;
+    height: 60%;
+    border-radius: 10px;
+  }
+  .product-list-orderConfirm > div:nth-child(2) > div:nth-child(2) {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 550;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 35%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-list-orderConfirm
+    > div:nth-child(2)
+    > div:nth-child(2)
+    img {
+    width: 45%;
+    height: 25px;
+    border-radius: 10px;
   }
 
-.order-comfirmation-child2{
-    width: 40%;
-    border: 1px solid rgb(7, 77, 4);
+
+  @media screen and (max-width: 768px) {
+    .orderConfirmMain{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .order-comfirmation{
+        width: 100%;
+        min-height: 50vh;
+        text-align: left;
+        padding: 10px 20px;
+    }
+    .order-comfirmation>p{
+        font-size: 16px;
+        line-height: 25px;
+    }
+    .order-comfirmation-child{
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+
+
+    .order-comfirmation-child1 {
+        width: 100%;
+      }
+      .order-comfirmation-child1 .ant-btn{
+        width: 40%;
+        height: 2.3rem;
+        background-color: #334461;
+        margin: 30px;
+      }
+    
+    .gridBox{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: 25px; 
+    }
+    .gridBox>div>p:nth-child(1){
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+    .order-comfirmation-child2{
+        width: 100%;
+    }
+    
   }

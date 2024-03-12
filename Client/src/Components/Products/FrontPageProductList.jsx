@@ -131,7 +131,17 @@ export const FrontPageProductList = ({ data }) => {
             ))}
 
           {!showMoreOffers && Object.entries(brands)?.length > 2 && (
-            <p className="frontPage-readMore-op">
+            <p  
+            className="frontPage-readMore-op"
+            style={{
+              cursor: "pointer",
+              textAlign: "left",
+              color: "#222F47",
+              fontSize: "0.9rem",
+              paddingRight: "20px",
+              fontStyle: "italic",
+              fontWeight:550
+            }}>
               <span onClick={() => setShowMoreOffers(true)}>
                 Explore more brands
               </span>
