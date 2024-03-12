@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   addToWishList,
-  getProductList,
-  getWishListedItems,
 } from "../../Redux/action";
 import { useDispatch } from "react-redux";
 
@@ -62,7 +60,7 @@ export const ProductList = ({ productList, wishList = 0 }) => {
           <div className="product-list-Individual-main-div" key={product?.id}>
             <div
               className={`product-list-Individual-main-div-${
-                product?.category == "tv's" ? "tvs" : "mobile"
+                product?.category == "mobiles" ? "mobile" : "tvs"
               }`}
               style={{ position: "relative" }}
             >

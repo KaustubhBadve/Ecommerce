@@ -55,7 +55,7 @@ export const NavbarCategories = () => {
     <div className="navabr-categories">
       <div
         key="home"
-        onClick={() => navigateToProducts("home")}
+        onClick={() => navigate("/")}
       >
         Home
       </div>

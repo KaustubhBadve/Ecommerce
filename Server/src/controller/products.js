@@ -56,16 +56,16 @@ exports.addProduct = async (req, res) => {
           .status(500)
           .json({ success: false, error: "Error uploading files" });
       }
-      const body = req.body;
+      let body = req.body;
       const files = req.files;
       if (body?.highlight) {
         let val = body?.highlight?.split(",");
         body["highlight"] = val;
       }
-      const ratings = Math.floor(Math.random() * (10000 - 1099 + 1)) + 1099;
-      const reviews = Math.floor(Math.random() * (1000 - 467 + 1)) + 467;
-      const productId = await productQuery.createProduct(body);
-      const avgRating = Math.round((Math.random() * (5 - 2 + 1) + 2) * 10) / 10;
+      let ratings = Math.floor(Math.random() * (10000 - 1099 + 1)) + 1099;
+      let reviews = Math.floor(Math.random() * (1000 - 467 + 1)) + 467;
+      let productId = await productQuery.createProduct(body);
+      let avgRating = Math.round((Math.random() * (5 - 2 + 1) + 2) * 10) / 10;
       body = {
         ...body,
         ratings,

@@ -36,14 +36,14 @@ export const FrontPageProductList = ({ data }) => {
           <span className="category-name">{category?.toUpperCase()}</span>
           <br />
           {Object.entries(brands)
-            .slice(0, 2)
+            .slice(0, 1)
             .map(([brand, products]) => (
               <div className="frontPage-productDisplay-brandrow" key={brand}>
                 <hr />
                 <span className="brand-name">{brand.toUpperCase()}</span>
                 <Swiper
-                  slidesPerView={isMobile ? (category == "tv's" ? 4 : 5) : 1}
-                  spaceBetween={category == "tv's" ? 10 : 45}
+                  slidesPerView={isMobile ? (category == "mobiles" ? 5 : 4) : 1}
+                  spaceBetween={category == "mobiles" ? 10 : 45}
                   loop={true}
                   autoplay={{
                     delay: 3000,
@@ -72,7 +72,7 @@ export const FrontPageProductList = ({ data }) => {
                       <SwiperSlide key={index}>
                         <div
                           className={`product-slider-main-div-${
-                            category == "tv's" ? "tvs" : "mobile"
+                            category == "mobiles" ? "mobile" : "tvs"
                           }`}
                         >
                           <img
@@ -130,7 +130,7 @@ export const FrontPageProductList = ({ data }) => {
               </div>
             ))}
 
-          {!showMoreOffers && Object.entries(brands)?.length > 2 && (
+          {!showMoreOffers && Object.entries(brands)?.length > 1 && (
             <p  
             className="frontPage-readMore-op"
             style={{
@@ -150,14 +150,14 @@ export const FrontPageProductList = ({ data }) => {
 
           {showMoreOffers &&
             Object.entries(brands)
-              ?.slice(2)
+              ?.slice(1)
               .map(([brand, products]) => (
                 <div key={brand}>
                   <hr />
                   <span className="brand-name">{brand.toUpperCase()}</span>
                   <Swiper
-                    slidesPerView={isMobile ? (category == "tv's" ? 4 : 5) : 1}
-                    spaceBetween={category == "tv's" ? 10 : 45}
+                    slidesPerView={isMobile ? (category == "mobiles" ? 5 : 4) : 1}
+                    spaceBetween={category == "mobiles" ? 45 : 10}
                     loop={true}
                     autoplay={{
                       delay: 3000,
@@ -212,7 +212,7 @@ export const FrontPageProductList = ({ data }) => {
                   </Swiper>
                 </div>
               ))}
-          {showMoreOffers && Object.entries(brands)?.length > 2 && (
+          {showMoreOffers && Object.entries(brands)?.length > 1 && (
             <p>
               <span
                 className="frontPage-readMore-op"
