@@ -1,9 +1,9 @@
 const options = {
 	DB: {
-		HOST: "127.0.0.1",
-		USER: "root",
-		PASSWORD: "password",
-		DB: "dev_db",
+		HOST: "mydatabase.cbuoic482vjw.ap-south-1.rds.amazonaws.com",
+		USER: "kaustubh",
+		PASSWORD: "Hexahealth123",
+		DB: "mydb",
 		dialect: "mysql",
 		pool: {
 			max: 5,
