@@ -226,7 +226,7 @@ export const FrontPageNavbar = () => {
       <div
         onClick={() => handleCartList()}
         className="navbar-top-icon-cart"
-        style={{ position: "relative",cursor: "pointer" }}
+        style={{ position: "relative", cursor: "pointer" }}
       >
         <ShoppingCartOutlined />
         <span
@@ -252,7 +252,7 @@ export const FrontPageNavbar = () => {
             onClick={toggleMenu}
           />
           <div className={`nav-elements-${showMenu}`}>
-           {userName && <h2>Hi, {userName}</h2>}
+            {userName && <h2>Hi, {userName}</h2>}
             <ul>
               <li onClick={() => navigateToProducts("home")}>Home</li>
               {categories?.map((item) => (
@@ -265,7 +265,11 @@ export const FrontPageNavbar = () => {
                   {item.categoryName}
                 </li>
               ))}
-              <li onClick={() => navigateToProducts("logout")}>Logout</li>
+              {userName ? (
+                <li onClick={() => navigateToProducts("logout")}>Logout</li>
+              ) : (
+                <li onClick={() => setModalLoginVisible(true)}>Login</li>
+              )}
             </ul>
             <div>
               <img
