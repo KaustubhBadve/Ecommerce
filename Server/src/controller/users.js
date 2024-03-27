@@ -12,12 +12,19 @@ const db = require("../models");
 const passswordValidate = (password) => {
   const schema = new passwordValidator();
   schema
-    .is().min(6)
-    .is().max(15)
-    .has().uppercase()
-    .has().lowercase()
-    .has().digits(2)
-    .has().not().spaces();
+    .is()
+    .min(6)
+    .is()
+    .max(15)
+    .has()
+    .uppercase()
+    .has()
+    .lowercase()
+    .has()
+    .digits(2)
+    .has()
+    .not()
+    .spaces();
 
   return schema.validate(password);
 };
@@ -57,7 +64,7 @@ exports.userRegistration = async (req, res) => {
 
     if (alreadyExists) {
       errors.errors.push({
-        msg: `User already exists with email ${body?.eamil}`,
+        msg: `User already exists with email ${body?.email}`,
       });
       return response.sendResponse(
         constant.response_code.BAD_REQUEST,
@@ -70,21 +77,22 @@ exports.userRegistration = async (req, res) => {
 
     let newUser = {
       name: body?.userName,
-      email:body.email,
+      email: body.email,
       password: body.password,
       mobileNo: body?.mobileNo,
       role: body?.role || "user",
     };
 
-   await query.createUser(newUser);
-
+    let data = await query.createUser(newUser);
+    newUser["id"] = data?.id;
     token = await genNewToken(newUser, res);
-   
+
     let userDetails = {
       name: body?.userName,
       mobileNo: body?.mobileNo,
-      email:body.email,
+      email: body.email,
       role: body?.role,
+      id: data?.id,
       token,
     };
 
