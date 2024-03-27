@@ -4,6 +4,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { images } from "./imports";
 import { Slider } from "./Slider";
+import { BASE_URL } from "../Config.js/AppConfig";
 
 const ProductForm = () => {
   const [form] = Form.useForm();
@@ -39,7 +40,7 @@ const ProductForm = () => {
         formData.append("images", file.originFileObj);
       });
 
-      await axios.post("http://localhost:3033/api/addProduct", formData, {
+      await axios.post(`${BASE_URL}/api/addProduct`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

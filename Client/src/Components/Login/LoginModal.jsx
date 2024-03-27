@@ -8,6 +8,7 @@ import { userSignup } from "../../Redux/action";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { BASE_URL } from "../../Config.js/AppConfig";
 
 const LoginModal = ({ visible, onCancell }) => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const LoginModal = ({ visible, onCancell }) => {
         password: password,
       };
       let resp = await axios.post(
-        "http://localhost:3033/api/auth/login",
+        `${BASE_URL}/api/auth/login`,
         values
       );
       message.success("Login Successful");

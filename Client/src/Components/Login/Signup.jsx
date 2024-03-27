@@ -10,6 +10,7 @@ import "./Login.css";
 import { userSignup } from "../../Redux/action";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import { BASE_URL } from "../../Config.js/AppConfig";
 
 
 const SignInModal = ({ visible, onnCancel }) => {
@@ -18,7 +19,7 @@ const SignInModal = ({ visible, onnCancel }) => {
 
   const Signup = async (values) => {
     try {
-      let resp = await axios.post("http://localhost:3033/api/auth/register", values);
+      let resp = await axios.post(`${BASE_URL}/api/auth/register`, values);
       message.success("Registration Successful");
       message.success(`Hi ${resp?.data?.data.name}`)
       Cookies.set("currentUser", JSON.stringify(resp?.data?.data));

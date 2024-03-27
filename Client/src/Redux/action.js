@@ -8,16 +8,16 @@ import {
   FETCH_PRODUCTS,
   FETCH_SPECIFIC_PRODUCTS,
   FETCH_WISHLIST,
-  LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   REMOVE_FROM_CART,
   SIGNUP_SUCCESS,
 } from "./actionType";
 import Cookies from "js-cookie";
+import { BASE_URL } from "../Config.js/AppConfig";
 
 export const getCategoris = () => (dispatch) => {
   try {
-    fetch(`http://localhost:3033/api/categorylist`)
+    fetch(`${BASE_URL}/api/categorylist`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: FETCH_CATEGORIES, payload: data?.data });
@@ -32,7 +32,7 @@ export const getProductList =
 
       let userId = JSON.parse(Cookies.get("currentUser")).id;
 
-      let url = `http://localhost:3033/api/getProduct`;
+      let url = `${BASE_URL}/api/getProduct`;
       let queryParams = [];
 
       if (category) {
@@ -83,8 +83,8 @@ export const getProductList =
   
   
       const url = userId 
-        ? `http://localhost:3033/api/getProduct/${id}?userId=${userId}`
-        : `http://localhost:3033/api/getProduct/${id}`;
+        ? `${BASE_URL}/api/getProduct/${id}?userId=${userId}`
+        : `${BASE_URL}/api/getProduct/${id}`;
   
       fetch(url)
         .then((res) => res.json())
@@ -103,8 +103,8 @@ export const getProductList =
       let userId = currentUser ? JSON.parse(currentUser).id : null;
 
       const url = userId 
-        ? `http://localhost:3033/api/getallproducts?userId=${userId}`
-        : `http://localhost:3033/api/getallproducts`;
+        ? `${BASE_URL}/api/getallproducts?userId=${userId}`
+        : `${BASE_URL}/api/getallproducts`;
   
       fetch(url)
         .then((res) => res.json())
@@ -138,7 +138,7 @@ export const addToWishList = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
    
-    await fetch(`http://localhost:3033/api/addtowishlist/${id}`, {
+    await fetch(`${BASE_URL}/api/addtowishlist/${id}`, {
       method: "post",
       headers: {
         authorization: `Bearer ${userToken}`,
@@ -159,7 +159,7 @@ export const getWishListedItems = () => async (dispatch) => {
 
     console.log("userToken", userToken);
 
-    await fetch(`http://localhost:3033/api/wishlisteditems`, {
+    await fetch(`${BASE_URL}/api/wishlisteditems`, {
       method: "get",
       headers: {
         authorization: `Bearer ${userToken}`,
@@ -179,7 +179,7 @@ export const addToCart = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
    console.log("id",id);
-    await fetch(`http://localhost:3033/api/addtocart/${id}`, {
+    await fetch(`${BASE_URL}/api/addtocart/${id}`, {
       method: "post",
       headers: {
         authorization: `Bearer ${userToken}`,
@@ -201,7 +201,7 @@ export const getCartItems = () => async (dispatch) => {
 
     console.log("userToken", userToken);
 
-    await fetch(`http://localhost:3033/api/cartitems`, {
+    await fetch(`${BASE_URL}/api/cartitems`, {
       method: "get",
       headers: {
         authorization: `Bearer ${userToken}`,
@@ -221,7 +221,7 @@ export const reomveCartItems = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
 
-    await fetch(`http://localhost:3033/api/removefromcart/${id}`, {
+    await fetch(`${BASE_URL}/api/removefromcart/${id}`, {
       method: "post",
       headers: {
         authorization: `Bearer ${userToken}`,
