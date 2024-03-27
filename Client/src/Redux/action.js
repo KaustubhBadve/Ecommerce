@@ -29,8 +29,8 @@ export const getCategoris = () => (dispatch) => {
 export const getProductList =
   (category, rating, brand, discount, priceMin, priceMax) => (dispatch) => {
     try {
-
-      let userId = JSON.parse(Cookies.get("currentUser")).id;
+      let currentUser = Cookies.get("currentUser");
+      let userId = currentUser ? JSON.parse(currentUser).id : null;
 
       let url = `${BASE_URL}/api/getProduct`;
       let queryParams = [];
@@ -38,7 +38,6 @@ export const getProductList =
       if (category) {
         queryParams.push(`category=${category}`);
       }
-
       if (userId) {
         queryParams.push(`userId=${userId}`);
       }
@@ -62,7 +61,9 @@ export const getProductList =
       if (queryParams.length > 0) {
         url += `?${queryParams.join("&")}`;
       }
+      console.log("url", url);
 
+      console.log("queryParams", queryParams);
       fetch(url)
         .then((res) => res.json())
         .then((data) => {
@@ -76,46 +77,43 @@ export const getProductList =
     }
   };
 
-  export const getProduct = (id) => (dispatch) => {
-    try {
-      const currentUser = Cookies.get("currentUser");
-      let userId = currentUser ? JSON.parse(currentUser).id : null;
-  
-  
-      const url = userId 
-        ? `${BASE_URL}/api/getProduct/${id}?userId=${userId}`
-        : `${BASE_URL}/api/getProduct/${id}`;
-  
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch({ type: FETCH_SPECIFIC_PRODUCTS, payload: data?.data?.data });
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
+export const getProduct = (id) => (dispatch) => {
+  try {
+    const currentUser = Cookies.get("currentUser");
+    let userId = currentUser ? JSON.parse(currentUser).id : null;
 
-  export const getDataGroupWise = () => (dispatch) => {
-    try {
-      const currentUser = Cookies.get("currentUser");
-      let userId = currentUser ? JSON.parse(currentUser).id : null;
+    const url = userId
+      ? `${BASE_URL}/api/getProduct/${id}?userId=${userId}`
+      : `${BASE_URL}/api/getProduct/${id}`;
 
-      const url = userId 
-        ? `${BASE_URL}/api/getallproducts?userId=${userId}`
-        : `${BASE_URL}/api/getallproducts`;
-  
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch({ type: FETCH_DATA_CATEGORY_WISE, payload: data.data.result });
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: FETCH_SPECIFIC_PRODUCTS, payload: data?.data?.data });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDataGroupWise = () => (dispatch) => {
+  try {
+    const currentUser = Cookies.get("currentUser");
+    let userId = currentUser ? JSON.parse(currentUser).id : null;
+
+    const url = userId
+      ? `${BASE_URL}/api/getallproducts?userId=${userId}`
+      : `${BASE_URL}/api/getallproducts`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: FETCH_DATA_CATEGORY_WISE, payload: data.data.result });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const userSignup = (data) => (dispatch) => {
   try {
@@ -137,7 +135,7 @@ export const logout = () => (dispatch) => {
 export const addToWishList = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
-   
+
     await fetch(`${BASE_URL}/api/addtowishlist/${id}`, {
       method: "post",
       headers: {
@@ -146,7 +144,7 @@ export const addToWishList = (id) => async (dispatch) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch({ type: ADD_TO_WISHLIST,payload:id });
+        dispatch({ type: ADD_TO_WISHLIST, payload: id });
       });
   } catch (error) {
     console.log(error);
@@ -178,7 +176,7 @@ export const getWishListedItems = () => async (dispatch) => {
 export const addToCart = (id) => async (dispatch) => {
   try {
     let userToken = JSON.parse(Cookies.get("currentUser")).token;
-   console.log("id",id);
+    console.log("id", id);
     await fetch(`${BASE_URL}/api/addtocart/${id}`, {
       method: "post",
       headers: {
@@ -187,8 +185,8 @@ export const addToCart = (id) => async (dispatch) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("eeeee",data.data);
-        dispatch({ type: ADD_TO_CART ,payload:data?.data});
+        console.log("eeeee", data.data);
+        dispatch({ type: ADD_TO_CART, payload: data?.data });
       });
   } catch (error) {
     console.log(error);
@@ -236,11 +234,11 @@ export const reomveCartItems = (id) => async (dispatch) => {
   }
 };
 
-export const addTotals=(data)=>(dispatch)=>{
+export const addTotals = (data) => (dispatch) => {
   try {
-    console.log("datadata",data);
-    dispatch({type:ADD_TOTALS,payload:data})
+    console.log("datadata", data);
+    dispatch({ type: ADD_TOTALS, payload: data });
   } catch (error) {
     console.log(error);
   }
-}
+};
