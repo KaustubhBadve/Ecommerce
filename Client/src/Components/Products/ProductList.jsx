@@ -12,13 +12,17 @@ import { useEffect, useState } from "react";
 import {
   addToWishList,
 } from "../../Redux/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { message } from "antd";
+import LoginModal from "../Login/LoginModal";
 
 export const ProductList = ({ productList, wishList = 0 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { userName } = useSelector((state) => state?.mainReducer);
 
   const [isMobile, setIsMobile] = useState(false);
+  const [modalLoginVisible, setModalLoginVisible] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +58,12 @@ export const ProductList = ({ productList, wishList = 0 }) => {
         var heartColor = product.isFavourate ? "#ff5857" : "#c8c8c8";
 
         const handleHeartClick = (id) => {
-          dispatch(addToWishList(id));
+          if (!userName) {
+            setModalLoginVisible(true);
+            message.warning("Login to continue");
+          }else{
+            dispatch(addToWishList(id));
+          }
         };
         return (
           <div className="product-list-Individual-main-div" key={product?.id}>
@@ -103,8 +112,8 @@ export const ProductList = ({ productList, wishList = 0 }) => {
               </div>
               {product?.highlight
                 .slice(0, highlightSlicedVal)
-                .map((highlight) => {
-                  return <li>{highlight}</li>;
+                .map((highlight,index) => {
+                  return <li  key={index}>{highlight}</li>;
                 })}
             </div>
             <div style={{ position: "relative" }}>
@@ -157,6 +166,10 @@ export const ProductList = ({ productList, wishList = 0 }) => {
           </div>
         );
       })}
+       <LoginModal
+        visible={modalLoginVisible}
+        onCancell={() => setModalLoginVisible(false)}
+      />
     </div>
   ) : (
     <div

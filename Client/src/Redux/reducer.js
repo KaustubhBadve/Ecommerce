@@ -135,7 +135,6 @@ export const Reducer = (state = InitialVal, { type, payload }) => {
       };
     }
     case ADD_TOTALS: {
-      console.log("payloadpayload",payload);
       return {
         ...state,
         cartTotalPrice:payload?.totalPrice,

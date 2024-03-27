@@ -180,8 +180,8 @@ export const ProductDetails = ({ product }) => {
       <div>
         <ul>Highlights</ul>
         <div>
-          {product?.highlight?.map((highlight) => {
-            return <li>{highlight}</li>;
+          {product?.highlight?.map((highlight,index) => {
+            return <li  key={index}>{highlight}</li>;
           })}
         </div>
       </div>

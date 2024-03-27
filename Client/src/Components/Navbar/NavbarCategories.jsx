@@ -45,7 +45,6 @@ export const NavbarCategories = () => {
   }, []);
 
   const navigateToProducts = (val) => {
-    console.log("val",val);
     dispatch(getProductList(val));
     setShowMenu(!showMenu);
     navigate(`/productlist?category=${val}`);

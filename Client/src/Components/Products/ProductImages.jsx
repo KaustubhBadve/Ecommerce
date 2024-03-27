@@ -16,8 +16,8 @@ export const ProductImages = ({ images, category, product }) => {
     images?.length > 0 ? images[0] : ""
   );
   const navigate = useNavigate();
-  const heartColor = product?.isFavourate ? "#ff5857" : "#c8c8c8"
-  
+  const heartColor = product?.isFavourate ? "#ff5857" : "#c8c8c8";
+
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const dispatch = useDispatch();
   const { userName } = useSelector((state) => state?.mainReducer);
@@ -26,7 +26,11 @@ export const ProductImages = ({ images, category, product }) => {
   };
 
   const handleHeartClick = () => {
-    dispatch(addToWishList(product?.id));
+    if (!userName) {
+      setModalLoginVisible(true);
+    } else {
+      dispatch(addToWishList(product?.id));
+    }
   };
 
   const handleAddToCart = () => {
@@ -38,13 +42,13 @@ export const ProductImages = ({ images, category, product }) => {
     }
   };
 
-  const handleBuyNow = ()=>{
+  const handleBuyNow = () => {
     if (!userName) {
       setModalLoginVisible(true);
     } else {
-      navigate("/cartItem")
+      navigate("/cartItem");
     }
-  }
+  };
   return (
     <div className="product-individual-images-main">
       <div className="product-individual-images-main2">
@@ -89,7 +93,7 @@ export const ProductImages = ({ images, category, product }) => {
           style={{ backgroundColor: "#FB641B", color: "white" }}
           type="primary"
           size={"large"}
-          onClick={()=>handleBuyNow()}
+          onClick={() => handleBuyNow()}
         >
           <FireOutlined /> BUY NOW
         </Button>

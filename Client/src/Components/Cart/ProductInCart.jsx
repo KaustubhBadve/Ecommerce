@@ -72,7 +72,6 @@ export const ProductInCart = ({ productList }) => {
 
   useEffect(()=>{
     dispatch(addTotals({totalPrice, totalDiscount}));
-    console.log("totalPrice, totalDiscount",totalPrice, totalDiscount);
   },[totalPrice,totalDiscount])
 
 

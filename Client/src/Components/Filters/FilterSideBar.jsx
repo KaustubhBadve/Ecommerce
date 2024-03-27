@@ -28,7 +28,6 @@ export const FilterSideBar = () => {
   }, []);
 
   useEffect(() => {
-    console.log(selectedMinPriceRange, selectedMaxPriceRange);
     dispatch(
       getProductList(
         selectedCategory,
