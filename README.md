@@ -38,6 +38,12 @@ this project encompasses both frontend and backend components to deliver a robus
     </ul>
   </li>
 
+  <li><b>Storage</b>
+    <ul>
+      <li><b>AWS S3:</b> Amazon Simple Storage Service provides scalable object storage for all product images, ensuring reliable and secure storage and retrieval.</li>
+    </ul>
+  </li>
+
   <li><b>Deployment & Security</b>
     <ul>
       <li><b>AWS EC2:</b> Amazon Elastic Compute Cloud provides scalable virtual servers for hosting the application, ensuring high availability and reliability.</li>
