@@ -2,17 +2,27 @@ import { Slider } from "../Components/Slider";
 import { images } from "../Components/imports";
 import { FrontPageOffers } from "../Components/OfferSection/FrontPageOffers";
 import { FrontPageOffersGrid } from "../Components/OfferSection/FrontPageOffersGrid";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataGroupWise } from "../Redux/action";
 import { FrontPageProductList } from "../Components/Products/FrontPageProductList";
 
 export const WebsiteFront = () => {
   const dispatch = useDispatch();
+  const productListRef = useRef(null);
   const { organisedProducts } = useSelector((state) => state?.mainReducer);
   useEffect(() => {
     dispatch(getDataGroupWise());
   }, []);
+
+  const scrollToBottom = () => {
+    const targetScrollPosition = document.documentElement.scrollHeight - (2500);
+    window.scrollTo({
+      top: targetScrollPosition,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div>
       <Slider
@@ -21,6 +31,7 @@ export const WebsiteFront = () => {
       />
        <FrontPageOffersGrid
         images={[images.OfferGrid1, images.OfferGrid2, images.OfferGrid3, images.OfferGrid4, images.OfferGrid5]}
+        onClick={scrollToBottom}
       />
       <FrontPageOffers
         images={[
