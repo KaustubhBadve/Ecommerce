@@ -126,7 +126,7 @@ const SignInModal = ({ visible, onnCancel }) => {
 
             <Form.Item>
               <p>
-                By continuing, you agree to Flipkart's Terms of Use and Privacy
+                By continuing, you agree to ShoppingKart's Terms of Use and Privacy
                 Policy.
               </p>
             </Form.Item>
