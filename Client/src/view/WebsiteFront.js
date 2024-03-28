@@ -2,14 +2,13 @@ import { Slider } from "../Components/Slider";
 import { images } from "../Components/imports";
 import { FrontPageOffers } from "../Components/OfferSection/FrontPageOffers";
 import { FrontPageOffersGrid } from "../Components/OfferSection/FrontPageOffersGrid";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataGroupWise } from "../Redux/action";
 import { FrontPageProductList } from "../Components/Products/FrontPageProductList";
 
 export const WebsiteFront = () => {
   const dispatch = useDispatch();
-  const productListRef = useRef(null);
   const { organisedProducts } = useSelector((state) => state?.mainReducer);
   useEffect(() => {
     dispatch(getDataGroupWise());

@@ -5,15 +5,14 @@ import {
 } from "@ant-design/icons";
 import { Button, Image, message } from "antd";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart, addToWishList, getProduct } from "../../Redux/action";
+import { addToCart, addToWishList } from "../../Redux/action";
 import LoginModal from "../Login/LoginModal";
 
 export const ProductImages = ({ images, category, product }) => {
   const [selectedImage, setSelectedImage] = useState(
-    images?.length > 0 ? images[0] : ""
+    images?.length > 0 ? images[0] : "https://firstbucketkb.s3.amazonaws.com/%2Fuploads%2Fimages.1709632193423-742518992"
   );
   const navigate = useNavigate();
   const heartColor = product?.isFavourate ? "#ff5857" : "#c8c8c8";
