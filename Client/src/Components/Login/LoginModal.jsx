@@ -97,7 +97,7 @@ const LoginModal = ({ visible, onCancell }) => {
               )}
 
               <p>
-                By continuing, you agree to Flipkart's Terms of Use and Privacy
+                By continuing, you agree to Shopping Kart's Terms of Use and Privacy
                 Policy.
               </p>
               <Button
@@ -116,7 +116,7 @@ const LoginModal = ({ visible, onCancell }) => {
                 onCancell();
               }}
             >
-              New to FlipKart? create an account
+              New to ShoppingKart? create an account
             </p>
           </div>
         </div>
