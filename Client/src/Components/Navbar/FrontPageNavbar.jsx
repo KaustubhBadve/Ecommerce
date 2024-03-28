@@ -66,7 +66,7 @@ export const FrontPageNavbar = () => {
   const menu = (
     <Menu
       style={{
-        width: "15vw",
+        width: "100%",
       }}
     >
       <Menu.Item key="profile">
