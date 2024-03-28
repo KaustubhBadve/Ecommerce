@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Modal, Input, Form, message } from "antd";
 import {
   EyeInvisibleOutlined,
@@ -74,11 +74,11 @@ const SignInModal = ({ visible, onnCancel }) => {
 
             <Form.Item
               name="email"
-              label="Email/Mobile No"
+              label="Email"
               rules={[
                 {
                   required: true,
-                  message: "Please enter your email or mobile no",
+                  message: "Please enter your email",
                 },
                 {
                   type: "email",
@@ -88,7 +88,7 @@ const SignInModal = ({ visible, onnCancel }) => {
                 },
               ]}
             >
-              <Input placeholder="Enter Email/Mobile No" />
+              <Input placeholder="Enter Email" />
             </Form.Item>
 
             <Form.Item
@@ -144,10 +144,6 @@ const SignInModal = ({ visible, onnCancel }) => {
           </Form>
         </div>
       </Modal>
-      {/* <LoginModal
-     visible={modalLoginVisible}
-     onCancell={() => setModalLoginVisible(false)}
-    /> */}
     </>
   );
 };
